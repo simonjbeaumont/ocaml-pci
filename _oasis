@@ -1,0 +1,35 @@
+OASISFormat:    0.4
+Name:           pci
+Version:        0.0.0
+Synopsis:       Ctypes bindings to libpci for OCaml
+Authors:        Si Beaumont
+License:        MIT
+Plugins:        DevFiles (0.4), META (0.4)
+BuildTools:     ocamlbuild
+
+Library pci
+  Path:             lib
+  Modules:          Pci_generated
+  InternalModules:  Pci_bindings
+  CSources:         pci_stubs.c
+  CCLib:            -lpci
+  CCOpt:            -I $pkg_ctypes_stubs
+  BuildDepends:     ctypes.stubs
+  BuildTools:       pci_stubgen
+
+Executable pci_stubgen
+  Install:        false
+  Path:           lib_gen
+  MainIs:         pci_stubgen.ml
+  BuildDepends:   ctypes.stubs
+
+Executable test_pci
+  Build$:         flag(tests)
+  Install:        false
+  Path:           lib_test
+  MainIs:         test_pci.ml
+  CompiledObject: best
+  BuildDepends:   pci
+
+Test test_pci
+  Command: $test_pci
