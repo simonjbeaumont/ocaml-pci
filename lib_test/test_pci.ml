@@ -1,5 +1,4 @@
-module P = Pci_bindings.Bindings(Pci_generated)
-open P
+open Pci
 
 let _ =
   let pci_access = pci_alloc () in
