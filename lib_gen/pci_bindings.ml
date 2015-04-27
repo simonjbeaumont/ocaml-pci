@@ -1,10 +1,13 @@
 open Ctypes
 
-type pci_access = unit ptr
-let pci_access : pci_access typ = ptr void
-
 module Bindings (F : Cstubs.FOREIGN) = struct
   open F
+
+  type pci_access = unit ptr
+  let pci_access : pci_access typ = ptr void
+
+  type pci_dev = unit ptr
+  let pci_dev : pci_dev typ = ptr void
 
   let pci_alloc =
     foreign "pci_alloc" (void @-> returning pci_access)
