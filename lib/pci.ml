@@ -20,7 +20,38 @@ module Pci_access = struct
     list_of_linked_list [] (getf !@t B.Pci_access.devices)
 end
 
+type pci_fill_flag =
+  | PCI_FILL_IDENT
+  | PCI_FILL_IRQ
+  | PCI_FILL_BASES
+  | PCI_FILL_ROM_BASE
+  | PCI_FILL_SIZES
+  | PCI_FILL_CLASS
+  | PCI_FILL_CAPS
+  | PCI_FILL_EXT_CAPS
+  | PCI_FILL_PHYS_SLOT
+  | PCI_FILL_MODULE_ALIAS
+  | PCI_FILL_RESCAN
+
+let int_of_pci_fill_flag = function
+  | PCI_FILL_IDENT -> 1
+  | PCI_FILL_IRQ -> 2
+  | PCI_FILL_BASES -> 4
+  | PCI_FILL_ROM_BASE -> 8
+  | PCI_FILL_SIZES -> 16
+  | PCI_FILL_CLASS -> 32
+  | PCI_FILL_CAPS -> 64
+  | PCI_FILL_EXT_CAPS -> 128
+  | PCI_FILL_PHYS_SLOT -> 256
+  | PCI_FILL_MODULE_ALIAS -> 512
+  | PCI_FILL_RESCAN -> 0x10000
+
 let pci_alloc = B.pci_alloc
 let pci_init = B.pci_init
 let pci_cleanup = B.pci_cleanup
 let pci_scan_bus = B.pci_scan_bus
+let pci_fill_info d flag_list =
+  let crush_flags f =
+    List.fold_left (fun i o -> i lor (f o)) 0 in
+  let flags = crush_flags int_of_pci_fill_flag flag_list in
+  B.pci_fill_info d flags
