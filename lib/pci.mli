@@ -1,8 +1,14 @@
 module Pci_dev : sig
   type t
+  val domain : t -> int
+  val bus : t -> int
+  val dev : t -> int
+  val func : t -> int
   val vendor_id : t -> int
   val device_id : t -> int
   val device_class : t -> int
+  val irq : t -> int
+  val base_addr : t -> nativeint list
 end
 
 module Pci_access : sig
@@ -28,3 +34,4 @@ val pci_init : Pci_access.t -> unit
 val pci_cleanup : Pci_access.t -> unit
 val pci_scan_bus : Pci_access.t -> unit
 val pci_fill_info : Pci_dev.t -> pci_fill_flag list -> int
+val pci_read_byte : Pci_dev.t -> int -> int

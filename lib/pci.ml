@@ -4,10 +4,15 @@ module B = Pci_bindings.Bindings(Pci_generated)
 
 module Pci_dev = struct
   type t = B.Pci_dev.t
+  let domain t = getf !@t B.Pci_dev.domain |> Unsigned.UInt16.to_int
+  let bus t = getf !@t B.Pci_dev.bus |> Unsigned.UInt8.to_int
+  let dev t = getf !@t B.Pci_dev.dev |> Unsigned.UInt8.to_int
+  let func t = getf !@t B.Pci_dev.func |> Unsigned.UInt8.to_int
   let vendor_id t = getf !@t B.Pci_dev.vendor_id |> Unsigned.UInt16.to_int
   let device_id t = getf !@t B.Pci_dev.device_id |> Unsigned.UInt16.to_int
   let device_class t = getf !@t B.Pci_dev.device_class |> Unsigned.UInt16.to_int
-  let vendor_id t = getf !@t B.Pci_dev.vendor_id |> Unsigned.UInt16.to_int
+  let irq t = getf !@t B.Pci_dev.irq
+  let base_addr t = getf !@t B.Pci_dev.base_addr |> CArray.to_list
 end
 
 module Pci_access = struct
@@ -55,3 +60,4 @@ let pci_fill_info d flag_list =
     List.fold_left (fun i o -> i lor (f o)) 0 in
   let flags = crush_flags int_of_pci_fill_flag flag_list in
   B.pci_fill_info d flags
+let pci_read_byte d pos = B.pci_read_byte d pos |> Unsigned.UInt8.to_int

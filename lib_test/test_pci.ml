@@ -7,6 +7,12 @@ let _ =
   let devs = Pci_access.devices pci_access in
   List.iter (fun d ->
     pci_fill_info d [ PCI_FILL_IDENT; PCI_FILL_BASES; PCI_FILL_CLASS ];
-    Printf.printf "vendor=%04x\n" (Pci_dev.vendor_id d)
+    let c = pci_read_byte d 0x3d in
+    let open Pci_dev in
+    Printf.printf "%04x:%02x:%02x.%d vendor=%04x device=%04x class=%04x irq=%d (pin %d) base0=%nx"
+      (domain d) (bus d) (dev d) (func d) (vendor_id d) (device_id d)
+      (device_class d) (irq d) c (List.hd @@ base_addr d);
+    let name = "Unknown" in
+    Printf.printf " (%s)\n" name
   ) devs;
   pci_cleanup pci_access
