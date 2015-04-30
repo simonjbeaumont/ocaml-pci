@@ -12,7 +12,7 @@ let _ =
     Printf.printf "%04x:%02x:%02x.%d vendor=%04x device=%04x class=%04x irq=%d (pin %d) base0=%nx"
       (domain d) (bus d) (dev d) (func d) (vendor_id d) (device_id d)
       (device_class d) (irq d) c (List.hd @@ base_addr d);
-    let name = "Unknown" in
+    let name = pci_lookup_device_name pci_access (vendor_id d) (device_id d) in
     Printf.printf " (%s)\n" name
   ) devs;
   pci_cleanup pci_access

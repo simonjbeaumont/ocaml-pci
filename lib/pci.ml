@@ -51,13 +51,39 @@ let int_of_pci_fill_flag = function
   | PCI_FILL_MODULE_ALIAS -> 512
   | PCI_FILL_RESCAN -> 0x10000
 
+type pci_lookup_mode =
+  | PCI_LOOKUP_VENDOR
+  | PCI_LOOKUP_DEVICE
+  | PCI_LOOKUP_CLASS
+  | PCI_LOOKUP_SUBSYSTEM
+  | PCI_LOOKUP_PROGIF
+
+let int_of_lookup_mode = function
+  | PCI_LOOKUP_VENDOR -> 1
+  | PCI_LOOKUP_DEVICE -> 2
+  | PCI_LOOKUP_CLASS -> 4
+  | PCI_LOOKUP_SUBSYSTEM -> 8
+  | PCI_LOOKUP_PROGIF -> 16
+
+let crush_flags f =
+  List.fold_left (fun i o -> i lor (f o)) 0
+
 let pci_alloc = B.pci_alloc
 let pci_init = B.pci_init
 let pci_cleanup = B.pci_cleanup
 let pci_scan_bus = B.pci_scan_bus
+
 let pci_fill_info d flag_list =
-  let crush_flags f =
-    List.fold_left (fun i o -> i lor (f o)) 0 in
-  let flags = crush_flags int_of_pci_fill_flag flag_list in
-  B.pci_fill_info d flags
+  B.pci_fill_info d @@ crush_flags int_of_pci_fill_flag flag_list
+
 let pci_read_byte d pos = B.pci_read_byte d pos |> Unsigned.UInt8.to_int
+
+let pci_lookup_vendor_name pci_access vendor_id =
+  let size = 1024 in
+  let buf = Bytes.make size '\000' in
+  B.pci_lookup_name_1_ary pci_access buf size (int_of_lookup_mode PCI_LOOKUP_VENDOR) vendor_id
+
+let pci_lookup_device_name pci_access vendor_id device_id =
+  let size = 1024 in
+  let buf = Bytes.make size '\000' in
+  B.pci_lookup_name_2_ary pci_access buf size (int_of_lookup_mode PCI_LOOKUP_DEVICE) vendor_id device_id
