@@ -13,7 +13,7 @@ module Bindings (F : Cstubs.FOREIGN) = struct
 
   type pci_dev
   let pci_dev : pci_dev structure typ = structure "pci_dev"
-  let next = field pci_dev "next" (ptr pci_dev)
+  let next = field pci_dev "next" (ptr_opt pci_dev)
   let domain = field pci_dev "domain" uint16_t
   let bus = field pci_dev "bus" uint8_t
   let dev = field pci_dev "dev" uint8_t
@@ -66,7 +66,7 @@ module Bindings (F : Cstubs.FOREIGN) = struct
   let error = field pci_access "error" (ptr void)
   let warning = field pci_access "warning" (ptr void)
   let debug = field pci_access "debug" (ptr void)
-  let devices = field pci_access "devices" (ptr pci_dev)
+  let devices = field pci_access "devices" (ptr_opt pci_dev)
   (* Fields used internally *)
   let methods = field pci_access "methods" (ptr void)
   let params = field pci_access "params" (ptr void)
