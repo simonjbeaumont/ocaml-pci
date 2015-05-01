@@ -3,7 +3,7 @@ Name:           pci
 Version:        0.0.0
 Synopsis:       Ctypes bindings to libpci for OCaml
 Authors:        Si Beaumont
-License:        MIT
+License:        LGPL-2.1 with OCaml linking exception
 Plugins:        DevFiles (0.4), META (0.4)
 BuildTools:     ocamlbuild
 
