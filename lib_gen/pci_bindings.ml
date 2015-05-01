@@ -200,10 +200,16 @@ module Bindings (F : Cstubs.FOREIGN) = struct
     foreign "pci_filter_match" (Pci_filter.t @-> Pci_dev.t @-> returning int)
 
   let pci_lookup_name_1_ary =
-    foreign "pci_lookup_name" (Pci_access.t @-> string @-> int @-> int @-> int @-> returning string)
+    foreign "pci_lookup_name"
+      (Pci_access.t @-> string @-> int @-> int @-> int @-> returning string)
 
   let pci_lookup_name_2_ary =
-    foreign "pci_lookup_name" (Pci_access.t @-> string @-> int @-> int @-> int @-> int @-> returning string)
+    foreign "pci_lookup_name"
+      (Pci_access.t @-> string @-> int @-> int @-> int @-> int @-> returning string)
+
+  let pci_lookup_name_4_ary =
+    foreign "pci_lookup_name"
+      (Pci_access.t @-> string @-> int @-> int @-> int @-> int @-> int @-> int @-> returning string)
 
   let pci_load_name_list =
     foreign "pci_load_name_list" (Pci_access.t @-> returning int)
