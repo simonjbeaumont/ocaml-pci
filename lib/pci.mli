@@ -9,6 +9,7 @@ module Pci_dev : sig
   val device_class : t -> int
   val irq : t -> int
   val base_addr : t -> nativeint list
+  val size : t -> nativeint list
 end
 
 module Pci_access : sig

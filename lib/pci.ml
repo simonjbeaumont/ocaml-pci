@@ -13,6 +13,7 @@ module Pci_dev = struct
   let device_class t = getf !@t B.Pci_dev.device_class |> Unsigned.UInt16.to_int
   let irq t = getf !@t B.Pci_dev.irq
   let base_addr t = getf !@t B.Pci_dev.base_addr |> CArray.to_list
+  let size t = getf !@t B.Pci_dev.size |> CArray.to_list
 end
 
 module Pci_access = struct

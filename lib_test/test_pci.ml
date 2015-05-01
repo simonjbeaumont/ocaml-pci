@@ -15,4 +15,15 @@ let _ =
     let name = pci_lookup_device_name pci_access (vendor_id d) (device_id d) in
     Printf.printf " (%s)\n" name
   ) devs;
+
+  match devs with
+  | [] -> ()
+  | d::ds ->
+      let open Pci_dev in
+      Printf.printf "Getting region sizes for device %04x:%02x:%02x.%d\n"
+        (domain d) (bus d) (dev d) (func d);
+      List.iteri (fun i size ->
+        Printf.printf "\tRegion %d has size %nd\n" i size
+      ) (size d)
+
   pci_cleanup pci_access
