@@ -30,14 +30,14 @@ type pci_fill_flag =
   | PCI_FILL_MODULE_ALIAS
   | PCI_FILL_RESCAN
 
-val pci_alloc : unit -> Pci_access.t
-val pci_init : Pci_access.t -> unit
-val pci_cleanup : Pci_access.t -> unit
-val pci_scan_bus : Pci_access.t -> unit
-val pci_fill_info : Pci_dev.t -> pci_fill_flag list -> int
-val pci_read_byte : Pci_dev.t -> int -> int
-val pci_lookup_class_name : Pci_access.t -> int -> string
-val pci_lookup_progif_name : Pci_access.t -> int -> int -> string
-val pci_lookup_vendor_name : Pci_access.t -> int -> string
-val pci_lookup_device_name : Pci_access.t -> int -> int -> string
-val pci_lookup_subsystem_name : Pci_access.t -> int -> int -> int -> int -> string
+val alloc : unit -> Pci_access.t
+val init : Pci_access.t -> unit
+val cleanup : Pci_access.t -> unit
+val scan_bus : Pci_access.t -> unit
+val fill_info : Pci_dev.t -> pci_fill_flag list -> int
+val read_byte : Pci_dev.t -> int -> int
+val lookup_class_name : Pci_access.t -> int -> string
+val lookup_progif_name : Pci_access.t -> int -> int -> string
+val lookup_vendor_name : Pci_access.t -> int -> string
+val lookup_device_name : Pci_access.t -> int -> int -> string
+val lookup_subsystem_name : Pci_access.t -> int -> int -> int -> int -> string

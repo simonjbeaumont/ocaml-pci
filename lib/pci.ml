@@ -55,15 +55,15 @@ let int_of_pci_fill_flag = function
 let crush_flags f =
   List.fold_left (fun i o -> i lor (f o)) 0
 
-let pci_alloc = B.pci_alloc
-let pci_init = B.pci_init
-let pci_cleanup = B.pci_cleanup
-let pci_scan_bus = B.pci_scan_bus
+let alloc = B.pci_alloc
+let init = B.pci_init
+let cleanup = B.pci_cleanup
+let scan_bus = B.pci_scan_bus
 
-let pci_fill_info d flag_list =
+let fill_info d flag_list =
   B.pci_fill_info d @@ crush_flags int_of_pci_fill_flag flag_list
 
-let pci_read_byte d pos = B.pci_read_byte d pos |> Unsigned.UInt8.to_int
+let read_byte d pos = B.pci_read_byte d pos |> Unsigned.UInt8.to_int
 
 let with_string ?(size=1024) f =
   let buf = Bytes.make size '\000' in
@@ -75,27 +75,27 @@ let pCI_LOOKUP_CLASS = 4
 let pCI_LOOKUP_SUBSYSTEM = 8
 let pCI_LOOKUP_PROGIF = 16
 
-let pci_lookup_class_name pci_access class_id =
+let lookup_class_name pci_access class_id =
   with_string (fun buf size ->
     B.pci_lookup_name_1_ary pci_access buf size pCI_LOOKUP_CLASS
       class_id)
 
-let pci_lookup_progif_name pci_access class_id progif_id =
+let lookup_progif_name pci_access class_id progif_id =
   with_string (fun buf size ->
     B.pci_lookup_name_2_ary pci_access buf size pCI_LOOKUP_PROGIF
       class_id progif_id)
 
-let pci_lookup_vendor_name pci_access vendor_id =
+let lookup_vendor_name pci_access vendor_id =
   with_string (fun buf size ->
     B.pci_lookup_name_1_ary pci_access buf size pCI_LOOKUP_VENDOR
       vendor_id)
 
-let pci_lookup_device_name pci_access vendor_id device_id =
+let lookup_device_name pci_access vendor_id device_id =
   with_string (fun buf size ->
     B.pci_lookup_name_2_ary pci_access buf size pCI_LOOKUP_DEVICE
       vendor_id device_id)
 
-let pci_lookup_subsystem_name pci_access vendor_id device_id subv_id subd_id =
+let lookup_subsystem_name pci_access vendor_id device_id subv_id subd_id =
   with_string (fun buf size ->
     B.pci_lookup_name_4_ary pci_access buf size pCI_LOOKUP_SUBSYSTEM
       vendor_id device_id subv_id subd_id)
