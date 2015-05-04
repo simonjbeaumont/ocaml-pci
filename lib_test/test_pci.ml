@@ -24,6 +24,6 @@ let _ =
         (domain d) (bus d) (dev d) (func d);
       List.iteri (fun i size ->
         Printf.printf "\tRegion %d has size %nd\n" i size
-      ) (size d)
+      ) (size d);
 
   pci_cleanup pci_access
