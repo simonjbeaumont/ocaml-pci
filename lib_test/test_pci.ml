@@ -6,7 +6,7 @@ let _ =
   scan_bus pci_access;
   let devs = Pci_access.devices pci_access in
   List.iter (fun d ->
-    fill_info d [ PCI_FILL_IDENT; PCI_FILL_BASES; PCI_FILL_CLASS ];
+    let (_: int) = fill_info d [ PCI_FILL_IDENT; PCI_FILL_BASES; PCI_FILL_CLASS ] in
     let c = read_byte d 0x3d in
     let open Pci_dev in
     Printf.printf "%04x:%02x:%02x.%d vendor=%04x device=%04x class=%04x irq=%d (pin %d) base0=%nx"
