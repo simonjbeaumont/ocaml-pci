@@ -10,7 +10,6 @@ BuildTools:     ocamlbuild
 Library pci
   Path:             lib
   Modules:          Pci
-  InternalModules:  Pci_bindings, Pci_generated
   CSources:         pci_stubs.c
   CCLib:            -lpci
   CCOpt:            -I $pkg_ctypes_stubs

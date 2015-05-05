@@ -632,9 +632,7 @@ let dispatch_default = MyOCamlbuildBase.dispatch_default conf package_default;;
 # 633 "myocamlbuild.ml"
 (* OASIS_STOP *)
 
-open Ocamlbuild_plugin;;
-
-dispatch
+Ocamlbuild_plugin.dispatch
   (MyOCamlbuildBase.dispatch_combine [
     begin function
     | After_rules ->
