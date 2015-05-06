@@ -1,0 +1,49 @@
+# OASIS_START
+# DO NOT EDIT (digest: 84c60bea4d42863369c2ca3724b944dd)
+# Ignore VCS directories, you can use the same kind of rule outside
+# OASIS_START/STOP if you want to exclude directories that contains
+# useless stuff for the build process
+true: annot, bin_annot
+<**/.svn>: -traverse
+<**/.svn>: not_hygienic
+".bzr": -traverse
+".bzr": not_hygienic
+".hg": -traverse
+".hg": not_hygienic
+".git": -traverse
+".git": not_hygienic
+"_darcs": -traverse
+"_darcs": not_hygienic
+# Library pci_bindings
+"bindings/pci_bindings.cmxs": use_pci_bindings
+<bindings/*.ml{,i,y}>: pkg_ctypes.stubs
+# Library pci
+"lib/pci.cmxs": use_pci
+<lib/*.ml{,i,y}>: oasis_library_pci_ccopt
+"lib/ffi_generated_stubs.c": oasis_library_pci_ccopt
+<lib/pci.{cma,cmxa}>: oasis_library_pci_cclib
+"lib/libpci_stubs.lib": oasis_library_pci_cclib
+"lib/dllpci_stubs.dll": oasis_library_pci_cclib
+"lib/libpci_stubs.a": oasis_library_pci_cclib
+"lib/dllpci_stubs.so": oasis_library_pci_cclib
+<lib/pci.{cma,cmxa}>: use_libpci_stubs
+<lib/*.ml{,i,y}>: pkg_ctypes.stubs
+<lib/*.ml{,i,y}>: use_pci_bindings
+"lib/ffi_generated_stubs.c": pkg_ctypes.stubs
+"lib/ffi_generated_stubs.c": use_pci_bindings
+# Executable ffi_stubgen
+"stubgen/ffi_stubgen.byte": pkg_ctypes.stubs
+"stubgen/ffi_stubgen.byte": use_pci_bindings
+# Executable ffi_types_stubgen
+"stubgen/ffi_types_stubgen.byte": pkg_ctypes.stubs
+"stubgen/ffi_types_stubgen.byte": use_pci_bindings
+<stubgen/*.ml{,i,y}>: pkg_ctypes.stubs
+<stubgen/*.ml{,i,y}>: use_pci_bindings
+# Executable test_pci
+<lib_test/test_pci.{native,byte}>: pkg_ctypes.stubs
+<lib_test/test_pci.{native,byte}>: use_pci
+<lib_test/test_pci.{native,byte}>: use_pci_bindings
+<lib_test/*.ml{,i,y}>: pkg_ctypes.stubs
+<lib_test/*.ml{,i,y}>: use_pci
+<lib_test/*.ml{,i,y}>: use_pci_bindings
+# OASIS_STOP
