@@ -9,18 +9,30 @@ BuildTools:     ocamlbuild
 
 Library pci
   Path:             lib
+  FindlibName:      pci
   Modules:          Pci
-  CSources:         pci_stubs.c
+  CSources:         ffi_generated_stubs.c
   CCLib:            -lpci
   CCOpt:            -I $pkg_ctypes_stubs
-  BuildDepends:     ctypes.stubs
-  BuildTools:       pci_stubgen
+  BuildDepends:     pci_bindings, ctypes.stubs
 
-Executable pci_stubgen
+Library pci_bindings
+  Install:          false
+  Path:             bindings
+  Modules:          Ffi_bindings
+  BuildDepends:     ctypes.stubs
+
+Executable ffi_stubgen
   Install:        false
-  Path:           lib_gen
-  MainIs:         pci_stubgen.ml
-  BuildDepends:   ctypes.stubs
+  Path:           stubgen
+  MainIs:         ffi_stubgen.ml
+  BuildDepends:   pci_bindings
+
+Executable ffi_types_stubgen
+  Install:        false
+  Path:           stubgen
+  MainIs:         ffi_types_stubgen.ml
+  BuildDepends:   pci_bindings
 
 Executable test_pci
   Build$:         flag(tests)

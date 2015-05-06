@@ -1,5 +1,6 @@
 open Ctypes
 
+module Types (F: Cstubs.Types.TYPE) = struct end
 module Bindings (F : Cstubs.FOREIGN) = struct
   open F
 

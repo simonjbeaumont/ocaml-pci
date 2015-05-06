@@ -1,6 +1,6 @@
 open Ctypes
 
-module B = Pci_bindings.Bindings(Pci_generated)
+module B = Ffi_bindings.Bindings(Ffi_generated)
 
 module Pci_dev = struct
   type t = B.Pci_dev.t
