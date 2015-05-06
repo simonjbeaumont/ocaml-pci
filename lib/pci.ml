@@ -1,6 +1,7 @@
 open Ctypes
 
 module B = Ffi_bindings.Bindings(Ffi_generated)
+module T = Ffi_bindings.Types(Ffi_generated_types)
 
 module Pci_dev = struct
   type t = B.Pci_dev.t
@@ -69,33 +70,27 @@ let with_string ?(size=1024) f =
   let buf = Bytes.make size '\000' in
   f buf size
 
-let pCI_LOOKUP_VENDOR = 1
-let pCI_LOOKUP_DEVICE = 2
-let pCI_LOOKUP_CLASS = 4
-let pCI_LOOKUP_SUBSYSTEM = 8
-let pCI_LOOKUP_PROGIF = 16
-
 let lookup_class_name pci_access class_id =
   with_string (fun buf size ->
-    B.pci_lookup_name_1_ary pci_access buf size pCI_LOOKUP_CLASS
+    B.pci_lookup_name_1_ary pci_access buf size T.Lookup_mode.lookup_vendor
       class_id)
 
 let lookup_progif_name pci_access class_id progif_id =
   with_string (fun buf size ->
-    B.pci_lookup_name_2_ary pci_access buf size pCI_LOOKUP_PROGIF
+    B.pci_lookup_name_2_ary pci_access buf size T.Lookup_mode.lookup_progif
       class_id progif_id)
 
 let lookup_vendor_name pci_access vendor_id =
   with_string (fun buf size ->
-    B.pci_lookup_name_1_ary pci_access buf size pCI_LOOKUP_VENDOR
+    B.pci_lookup_name_1_ary pci_access buf size T.Lookup_mode.lookup_vendor
       vendor_id)
 
 let lookup_device_name pci_access vendor_id device_id =
   with_string (fun buf size ->
-    B.pci_lookup_name_2_ary pci_access buf size pCI_LOOKUP_DEVICE
+    B.pci_lookup_name_2_ary pci_access buf size T.Lookup_mode.lookup_device
       vendor_id device_id)
 
 let lookup_subsystem_name pci_access vendor_id device_id subv_id subd_id =
   with_string (fun buf size ->
-    B.pci_lookup_name_4_ary pci_access buf size pCI_LOOKUP_SUBSYSTEM
+    B.pci_lookup_name_4_ary pci_access buf size T.Lookup_mode.lookup_subsystem
       vendor_id device_id subv_id subd_id)

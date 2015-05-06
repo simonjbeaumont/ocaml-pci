@@ -1,6 +1,22 @@
 open Ctypes
 
-module Types (F: Cstubs.Types.TYPE) = struct end
+module Types (F: Cstubs.Types.TYPE) = struct
+  module Lookup_mode = struct
+    let lookup_vendor = F.constant "PCI_LOOKUP_VENDOR" F.int
+    let lookup_device = F.constant "PCI_LOOKUP_DEVICE" F.int
+    let lookup_class = F.constant "PCI_LOOKUP_CLASS" F.int
+    let lookup_subsystem = F.constant "PCI_LOOKUP_SUBSYSTEM" F.int
+    let lookup_progif = F.constant "PCI_LOOKUP_PROGIF" F.int
+    let lookup_numeric = F.constant "PCI_LOOKUP_NUMERIC" F.int
+    let lookup_no_numbers = F.constant "PCI_LOOKUP_NO_NUMBERS" F.int
+    let lookup_mixed = F.constant "PCI_LOOKUP_MIXED" F.int
+    let lookup_network = F.constant "PCI_LOOKUP_NETWORK" F.int
+    let lookup_skip_local = F.constant "PCI_LOOKUP_SKIP_LOCAL" F.int
+    let lookup_cache = F.constant "PCI_LOOKUP_CACHE" F.int
+    let lookup_refresh_cache = F.constant "PCI_LOOKUP_REFRESH_CACHE" F.int
+  end
+end
+
 module Bindings (F : Cstubs.FOREIGN) = struct
   open F
 
