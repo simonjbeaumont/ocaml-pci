@@ -11,14 +11,14 @@ Library pci
   Path:             lib
   FindlibName:      pci
   Modules:          Pci
-  InternalModules:  Ffi_bindings, Ffi_generated_types
+  InternalModules:  Ffi_generated, Ffi_generated_types
   CSources:         ffi_generated_stubs.c
   CCLib:            -lpci
   CCOpt:            -I $pkg_ctypes_stubs
   BuildDepends:     pci_bindings, ctypes.stubs
 
 Library pci_bindings
-  Install:          false
+  Install:          true
   Path:             bindings
   Modules:          Ffi_bindings
   BuildDepends:     ctypes.stubs
