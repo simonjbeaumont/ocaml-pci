@@ -1,6 +1,6 @@
 OASISFormat:    0.4
 Name:           pci
-Version:        0.2.0
+Version:        0.1.2
 Synopsis:       Ctypes bindings to libpci for OCaml
 Authors:        Si Beaumont
 License:        LGPL-2.1 with OCaml linking exception
@@ -11,13 +11,14 @@ Library pci
   Path:             lib
   FindlibName:      pci
   Modules:          Pci
+  InternalModules:  Ffi_generated, Ffi_generated_types
   CSources:         ffi_generated_stubs.c
   CCLib:            -lpci
   CCOpt:            -I $pkg_ctypes_stubs
   BuildDepends:     pci_bindings, ctypes.stubs
 
 Library pci_bindings
-  Install:          false
+  Install:          true
   Path:             bindings
   Modules:          Ffi_bindings
   BuildDepends:     ctypes.stubs
