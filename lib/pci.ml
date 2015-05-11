@@ -8,13 +8,13 @@ module U16 = Unsigned.UInt16
 
 module Pci_dev = struct
   type t = B.Pci_dev.t
-  let domain t = getf !@t B.Pci_dev.domain |> Unsigned.UInt16.to_int
-  let bus t = getf !@t B.Pci_dev.bus |> Unsigned.UInt8.to_int
-  let dev t = getf !@t B.Pci_dev.dev |> Unsigned.UInt8.to_int
-  let func t = getf !@t B.Pci_dev.func |> Unsigned.UInt8.to_int
-  let vendor_id t = getf !@t B.Pci_dev.vendor_id |> Unsigned.UInt16.to_int
-  let device_id t = getf !@t B.Pci_dev.device_id |> Unsigned.UInt16.to_int
-  let device_class t = getf !@t B.Pci_dev.device_class |> Unsigned.UInt16.to_int
+  let domain t = getf !@t B.Pci_dev.domain |> U16.to_int
+  let bus t = getf !@t B.Pci_dev.bus |> U8.to_int
+  let dev t = getf !@t B.Pci_dev.dev |> U8.to_int
+  let func t = getf !@t B.Pci_dev.func |> U8.to_int
+  let vendor_id t = getf !@t B.Pci_dev.vendor_id |> U16.to_int
+  let device_id t = getf !@t B.Pci_dev.device_id |> U16.to_int
+  let device_class t = getf !@t B.Pci_dev.device_class |> U16.to_int
   let irq t = getf !@t B.Pci_dev.irq
   let base_addr t = getf !@t B.Pci_dev.base_addr |> CArray.to_list
   let size t = getf !@t B.Pci_dev.size |> CArray.to_list
@@ -78,7 +78,7 @@ let scan_bus = B.pci_scan_bus
 let fill_info d flag_list =
   B.pci_fill_info d @@ crush_flags int_of_fill_flag flag_list
 
-let read_byte d pos = B.pci_read_byte d pos |> Unsigned.UInt8.to_int
+let read_byte d pos = B.pci_read_byte d pos |> U8.to_int
 
 let with_string ?(size=1024) f =
   let buf = Bytes.make size '\000' in
