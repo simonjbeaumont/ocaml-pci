@@ -40,7 +40,7 @@ type fill_flag =
   | FILL_MODULE_ALIAS
   | FILL_RESCAN
 
-let int_of_pci_fill_flag = function
+let int_of_fill_flag = function
   | FILL_IDENT -> T.Fill_flag.fill_ident
   | FILL_IRQ -> T.Fill_flag.fill_irq
   | FILL_BASES -> T.Fill_flag.fill_bases
@@ -62,7 +62,7 @@ let cleanup = B.pci_cleanup
 let scan_bus = B.pci_scan_bus
 
 let fill_info d flag_list =
-  B.pci_fill_info d @@ crush_flags int_of_pci_fill_flag flag_list
+  B.pci_fill_info d @@ crush_flags int_of_fill_flag flag_list
 
 let read_byte d pos = B.pci_read_byte d pos |> Unsigned.UInt8.to_int
 
