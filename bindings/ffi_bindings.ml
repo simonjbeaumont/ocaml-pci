@@ -49,6 +49,16 @@ module Types (F: Cstubs.Types.TYPE) = struct
     let base_class_signal = F.constant "PCI_BASE_CLASS_SIGNAL" F.int
     let class_others = F.constant "PCI_CLASS_OTHERS" F.int
   end
+  module Header = struct
+    (* A subset of the PCI configuration address space (see pci/header.h) *)
+    let header_type = F.constant "PCI_HEADER_TYPE" F.int
+    let header_type_normal = F.constant "PCI_HEADER_TYPE_NORMAL" F.int
+    let subsystem_vendor_id = F.constant "PCI_SUBSYSTEM_VENDOR_ID" F.int
+    let subsystem_id = F.constant "PCI_SUBSYSTEM_ID" F.int
+    let header_type_cardbus = F.constant "PCI_HEADER_TYPE_CARDBUS" F.int
+    let cb_subsystem_vendor_id = F.constant "PCI_CB_SUBSYSTEM_VENDOR_ID" F.int
+    let cb_subsystem_id = F.constant "PCI_CB_SUBSYSTEM_ID" F.int
+  end
 end
 
 module Bindings (F : Cstubs.FOREIGN) = struct

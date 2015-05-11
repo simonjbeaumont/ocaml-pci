@@ -3,6 +3,9 @@ open Ctypes
 module B = Ffi_bindings.Bindings(Ffi_generated)
 module T = Ffi_bindings.Types(Ffi_generated_types)
 
+module U8 = Unsigned.UInt8
+module U16 = Unsigned.UInt16
+
 module Pci_dev = struct
   type t = B.Pci_dev.t
   let domain t = getf !@t B.Pci_dev.domain |> Unsigned.UInt16.to_int
@@ -15,6 +18,17 @@ module Pci_dev = struct
   let irq t = getf !@t B.Pci_dev.irq
   let base_addr t = getf !@t B.Pci_dev.base_addr |> CArray.to_list
   let size t = getf !@t B.Pci_dev.size |> CArray.to_list
+  let subsystem_id t =
+    match (B.pci_read_byte t T.Header.header_type |> U8.to_int) land 0x7f with
+    | x when x = T.Header.header_type_normal ->
+      Some (
+        B.pci_read_word t T.Header.subsystem_vendor_id |> U16.to_int,
+        B.pci_read_word t T.Header.subsystem_id |> U16.to_int)
+    | x when x = T.Header.header_type_cardbus ->
+      Some (
+        B.pci_read_word t T.Header.cb_subsystem_vendor_id |> U16.to_int,
+        B.pci_read_word t T.Header.cb_subsystem_id |> U16.to_int)
+    | _ -> None
 end
 
 module Pci_access = struct
