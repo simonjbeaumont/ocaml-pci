@@ -18,6 +18,7 @@ module Pci_dev = struct
   let irq t = getf !@t B.Pci_dev.irq
   let base_addr t = getf !@t B.Pci_dev.base_addr |> CArray.to_list
   let size t = getf !@t B.Pci_dev.size |> CArray.to_list
+  let phy_slot t = getf !@t B.Pci_dev.phy_slot
   let subsystem_id t =
     match (B.pci_read_byte t T.Header.header_type |> U8.to_int) land 0x7f with
     | x when x = T.Header.header_type_normal ->
