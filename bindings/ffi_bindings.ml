@@ -28,6 +28,27 @@ module Types (F: Cstubs.Types.TYPE) = struct
     let fill_module_alias = F.constant "PCI_FILL_MODULE_ALIAS" F.int
     let fill_rescan = F.constant "PCI_FILL_RESCAN" F.int
   end
+  module Pci_class = struct
+    let class_not_defined = F.constant "PCI_CLASS_NOT_DEFINED" F.int
+    let base_class_storage = F.constant "PCI_BASE_CLASS_STORAGE" F.int
+    let base_class_network = F.constant "PCI_BASE_CLASS_NETWORK" F.int
+    let base_class_display = F.constant "PCI_BASE_CLASS_DISPLAY" F.int
+    let base_class_multimedia = F.constant "PCI_BASE_CLASS_MULTIMEDIA" F.int
+    let base_class_memory = F.constant "PCI_BASE_CLASS_MEMORY" F.int
+    let base_class_bridge = F.constant "PCI_BASE_CLASS_BRIDGE" F.int
+    let base_class_communication = F.constant "PCI_BASE_CLASS_COMMUNICATION" F.int
+    let base_class_system = F.constant "PCI_BASE_CLASS_SYSTEM" F.int
+    let base_class_input = F.constant "PCI_BASE_CLASS_INPUT" F.int
+    let base_class_docking = F.constant "PCI_BASE_CLASS_DOCKING" F.int
+    let base_class_processor = F.constant "PCI_BASE_CLASS_PROCESSOR" F.int
+    let base_class_serial = F.constant "PCI_BASE_CLASS_SERIAL" F.int
+    let base_class_wireless = F.constant "PCI_BASE_CLASS_WIRELESS" F.int
+    let base_class_intelligent = F.constant "PCI_BASE_CLASS_INTELLIGENT" F.int
+    let base_class_satellite = F.constant "PCI_BASE_CLASS_SATELLITE" F.int
+    let base_class_crypt = F.constant "PCI_BASE_CLASS_CRYPT" F.int
+    let base_class_signal = F.constant "PCI_BASE_CLASS_SIGNAL" F.int
+    let class_others = F.constant "PCI_CLASS_OTHERS" F.int
+  end
 end
 
 module Bindings (F : Cstubs.FOREIGN) = struct
