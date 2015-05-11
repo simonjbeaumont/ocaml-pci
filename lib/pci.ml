@@ -70,6 +70,7 @@ let int_of_fill_flag = function
 
 let crush_flags f =
   List.fold_left (fun i o -> i lor (f o)) 0
+let id x = x
 
 let alloc = B.pci_alloc
 let init = B.pci_init
@@ -107,5 +108,6 @@ let lookup_device_name pci_access vendor_id device_id =
 
 let lookup_subsystem_name pci_access vendor_id device_id subv_id subd_id =
   with_string (fun buf size ->
-    B.pci_lookup_name_4_ary pci_access buf size T.Lookup_mode.lookup_subsystem
+    let lookup_flags = T.Lookup_mode.([ lookup_subsystem; lookup_device ]) in
+    B.pci_lookup_name_4_ary pci_access buf size (crush_flags id lookup_flags)
       vendor_id device_id subv_id subd_id)
