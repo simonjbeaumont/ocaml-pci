@@ -27,31 +27,31 @@ module Pci_access = struct
     list_of_linked_list [] (getf !@t B.Pci_access.devices)
 end
 
-type pci_fill_flag =
-  | PCI_FILL_IDENT
-  | PCI_FILL_IRQ
-  | PCI_FILL_BASES
-  | PCI_FILL_ROM_BASE
-  | PCI_FILL_SIZES
-  | PCI_FILL_CLASS
-  | PCI_FILL_CAPS
-  | PCI_FILL_EXT_CAPS
-  | PCI_FILL_PHYS_SLOT
-  | PCI_FILL_MODULE_ALIAS
-  | PCI_FILL_RESCAN
+type fill_flag =
+  | FILL_IDENT
+  | FILL_IRQ
+  | FILL_BASES
+  | FILL_ROM_BASE
+  | FILL_SIZES
+  | FILL_CLASS
+  | FILL_CAPS
+  | FILL_EXT_CAPS
+  | FILL_PHYS_SLOT
+  | FILL_MODULE_ALIAS
+  | FILL_RESCAN
 
 let int_of_pci_fill_flag = function
-  | PCI_FILL_IDENT -> 1
-  | PCI_FILL_IRQ -> 2
-  | PCI_FILL_BASES -> 4
-  | PCI_FILL_ROM_BASE -> 8
-  | PCI_FILL_SIZES -> 16
-  | PCI_FILL_CLASS -> 32
-  | PCI_FILL_CAPS -> 64
-  | PCI_FILL_EXT_CAPS -> 128
-  | PCI_FILL_PHYS_SLOT -> 256
-  | PCI_FILL_MODULE_ALIAS -> 512
-  | PCI_FILL_RESCAN -> 0x10000
+  | FILL_IDENT -> T.Fill_flag.fill_ident
+  | FILL_IRQ -> T.Fill_flag.fill_irq
+  | FILL_BASES -> T.Fill_flag.fill_bases
+  | FILL_ROM_BASE -> T.Fill_flag.fill_rom_base
+  | FILL_SIZES -> T.Fill_flag.fill_sizes
+  | FILL_CLASS -> T.Fill_flag.fill_class
+  | FILL_CAPS -> T.Fill_flag.fill_caps
+  | FILL_EXT_CAPS -> T.Fill_flag.fill_ext_caps
+  | FILL_PHYS_SLOT -> T.Fill_flag.fill_phys_slot
+  | FILL_MODULE_ALIAS -> T.Fill_flag.fill_module_alias
+  | FILL_RESCAN -> T.Fill_flag.fill_rescan
 
 let crush_flags f =
   List.fold_left (fun i o -> i lor (f o)) 0
