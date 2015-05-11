@@ -29,25 +29,25 @@ module Types (F: Cstubs.Types.TYPE) = struct
     let fill_rescan = F.constant "PCI_FILL_RESCAN" F.int
   end
   module Pci_class = struct
-    let class_not_defined = F.constant "PCI_CLASS_NOT_DEFINED" F.int
-    let base_class_storage = F.constant "PCI_BASE_CLASS_STORAGE" F.int
-    let base_class_network = F.constant "PCI_BASE_CLASS_NETWORK" F.int
-    let base_class_display = F.constant "PCI_BASE_CLASS_DISPLAY" F.int
-    let base_class_multimedia = F.constant "PCI_BASE_CLASS_MULTIMEDIA" F.int
-    let base_class_memory = F.constant "PCI_BASE_CLASS_MEMORY" F.int
-    let base_class_bridge = F.constant "PCI_BASE_CLASS_BRIDGE" F.int
-    let base_class_communication = F.constant "PCI_BASE_CLASS_COMMUNICATION" F.int
-    let base_class_system = F.constant "PCI_BASE_CLASS_SYSTEM" F.int
-    let base_class_input = F.constant "PCI_BASE_CLASS_INPUT" F.int
-    let base_class_docking = F.constant "PCI_BASE_CLASS_DOCKING" F.int
-    let base_class_processor = F.constant "PCI_BASE_CLASS_PROCESSOR" F.int
-    let base_class_serial = F.constant "PCI_BASE_CLASS_SERIAL" F.int
-    let base_class_wireless = F.constant "PCI_BASE_CLASS_WIRELESS" F.int
-    let base_class_intelligent = F.constant "PCI_BASE_CLASS_INTELLIGENT" F.int
-    let base_class_satellite = F.constant "PCI_BASE_CLASS_SATELLITE" F.int
-    let base_class_crypt = F.constant "PCI_BASE_CLASS_CRYPT" F.int
-    let base_class_signal = F.constant "PCI_BASE_CLASS_SIGNAL" F.int
-    let class_others = F.constant "PCI_CLASS_OTHERS" F.int
+    let class_not_defined = f.constant "pci_class_not_defined" f.int
+    let base_class_storage = f.constant "pci_base_class_storage" f.int
+    let base_class_network = f.constant "pci_base_class_network" f.int
+    let base_class_display = f.constant "pci_base_class_display" f.int
+    let base_class_multimedia = f.constant "pci_base_class_multimedia" f.int
+    let base_class_memory = f.constant "pci_base_class_memory" f.int
+    let base_class_bridge = f.constant "pci_base_class_bridge" f.int
+    let base_class_communication = f.constant "pci_base_class_communication" f.int
+    let base_class_system = f.constant "pci_base_class_system" f.int
+    let base_class_input = f.constant "pci_base_class_input" f.int
+    let base_class_docking = f.constant "pci_base_class_docking" f.int
+    let base_class_processor = f.constant "pci_base_class_processor" f.int
+    let base_class_serial = f.constant "pci_base_class_serial" f.int
+    let base_class_wireless = f.constant "pci_base_class_wireless" f.int
+    let base_class_intelligent = f.constant "pci_base_class_intelligent" f.int
+    let base_class_satellite = f.constant "pci_base_class_satellite" f.int
+    let base_class_crypt = f.constant "pci_base_class_crypt" f.int
+    let base_class_signal = f.constant "pci_base_class_signal" f.int
+    let class_others = f.constant "pci_class_others" f.int
   end
 end
 

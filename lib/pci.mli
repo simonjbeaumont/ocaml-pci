@@ -1,5 +1,27 @@
 module Pci_dev : sig
   type t
+  type base_class =
+    | NOT_DEFINED
+    | STORAGE
+    | NETWORK
+    | DISPLAY
+    | MULTIMEDIA
+    | MEMORY
+    | BRIDGE
+    | COMMUNICATION
+    | SYSTEM
+    | INPUT
+    | DOCKING
+    | PROCESSOR
+    | SERIAL
+    | WIRELESS
+    | INTELLIGENT
+    | SATELLITE
+    | CRYPT
+    | SIGNAL
+    | OTHERS
+end
+
   val domain : t -> int
   val bus : t -> int
   val dev : t -> int
