@@ -239,9 +239,6 @@ module Bindings (F : Cstubs.FOREIGN) = struct
   let pci_fill_info =
     foreign "pci_fill_info" (Pci_dev.t @-> int @-> returning int)
 
-  let pCI_FILL_IDENT = 1
-    (* foreign "PCI_FILL_IDENT" constant 1 *)
-
   let pci_setup_cache =
     foreign "pci_setup_cache" (Pci_dev.t @-> ptr uint8_t @-> int @-> returning void)
 
