@@ -10,7 +10,7 @@ module Pci_dev : sig
   val irq : t -> int
   val base_addr : t -> nativeint list
   val size : t -> nativeint list
-  val phy_slot : t -> string
+  val phy_slot : t -> string option
   val subsystem_id : t -> (int * int) option
 end
 

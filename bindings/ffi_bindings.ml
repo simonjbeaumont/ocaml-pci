@@ -98,8 +98,8 @@ module Bindings (F : Cstubs.FOREIGN) = struct
     let rom_base_addr = pciaddr_t -: "rom_base_addr"
     let rom_size = pciaddr_t -: "rom_size"
     let first_cap = Pci_cap.t -: "first_cap"
-    let phy_slot = string -: "phy_slot"
-    let module_alias = string -: "module_alias"
+    let phy_slot = string_opt -: "phy_slot"
+    let module_alias = string_opt -: "module_alias"
     (* Fields used internally *)
     let access = (ptr void) -: "access"
     let methods = (ptr void) -: "methods"
