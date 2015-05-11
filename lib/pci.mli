@@ -17,24 +17,24 @@ module Pci_access : sig
   val devices : t -> Pci_dev.t list
 end
 
-type pci_fill_flag =
-  | PCI_FILL_IDENT
-  | PCI_FILL_IRQ
-  | PCI_FILL_BASES
-  | PCI_FILL_ROM_BASE
-  | PCI_FILL_SIZES
-  | PCI_FILL_CLASS
-  | PCI_FILL_CAPS
-  | PCI_FILL_EXT_CAPS
-  | PCI_FILL_PHYS_SLOT
-  | PCI_FILL_MODULE_ALIAS
-  | PCI_FILL_RESCAN
+type fill_flag =
+  | FILL_IDENT
+  | FILL_IRQ
+  | FILL_BASES
+  | FILL_ROM_BASE
+  | FILL_SIZES
+  | FILL_CLASS
+  | FILL_CAPS
+  | FILL_EXT_CAPS
+  | FILL_PHYS_SLOT
+  | FILL_MODULE_ALIAS
+  | FILL_RESCAN
 
 val alloc : unit -> Pci_access.t
 val init : Pci_access.t -> unit
 val cleanup : Pci_access.t -> unit
 val scan_bus : Pci_access.t -> unit
-val fill_info : Pci_dev.t -> pci_fill_flag list -> int
+val fill_info : Pci_dev.t -> fill_flag list -> int
 val read_byte : Pci_dev.t -> int -> int
 val lookup_class_name : Pci_access.t -> int -> string
 val lookup_progif_name : Pci_access.t -> int -> int -> string

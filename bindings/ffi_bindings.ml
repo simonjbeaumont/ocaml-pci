@@ -15,6 +15,19 @@ module Types (F: Cstubs.Types.TYPE) = struct
     let lookup_cache = F.constant "PCI_LOOKUP_CACHE" F.int
     let lookup_refresh_cache = F.constant "PCI_LOOKUP_REFRESH_CACHE" F.int
   end
+  module Fill_flag = struct
+    let fill_ident = F.constant "PCI_FILL_IDENT" F.int
+    let fill_irq = F.constant "PCI_FILL_IRQ" F.int
+    let fill_bases = F.constant "PCI_FILL_BASES" F.int
+    let fill_rom_base = F.constant "PCI_FILL_ROM_BASE" F.int
+    let fill_sizes = F.constant "PCI_FILL_SIZES" F.int
+    let fill_class = F.constant "PCI_FILL_CLASS" F.int
+    let fill_caps = F.constant "PCI_FILL_CAPS" F.int
+    let fill_ext_caps = F.constant "PCI_FILL_EXT_CAPS" F.int
+    let fill_phys_slot = F.constant "PCI_FILL_PHYS_SLOT" F.int
+    let fill_module_alias = F.constant "PCI_FILL_MODULE_ALIAS" F.int
+    let fill_rescan = F.constant "PCI_FILL_RESCAN" F.int
+  end
 end
 
 module Bindings (F : Cstubs.FOREIGN) = struct
