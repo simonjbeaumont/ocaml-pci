@@ -72,7 +72,7 @@ let with_string ?(size=1024) f =
 
 let lookup_class_name pci_access class_id =
   with_string (fun buf size ->
-    B.pci_lookup_name_1_ary pci_access buf size T.Lookup_mode.lookup_vendor
+    B.pci_lookup_name_1_ary pci_access buf size T.Lookup_mode.lookup_class
       class_id)
 
 let lookup_progif_name pci_access class_id progif_id =
