@@ -106,7 +106,13 @@ let lookup_device_name pci_access vendor_id device_id =
     B.pci_lookup_name_2_ary pci_access buf size T.Lookup_mode.lookup_device
       vendor_id device_id)
 
-let lookup_subsystem_name pci_access vendor_id device_id subv_id subd_id =
+let lookup_subsystem_vendor_name pci_access subv_id =
+  with_string (fun buf size ->
+    let lookup_flags = T.Lookup_mode.([ lookup_subsystem; lookup_vendor ]) in
+    B.pci_lookup_name_1_ary pci_access buf size (crush_flags id lookup_flags)
+      subv_id)
+
+let lookup_subsystem_device_name pci_access vendor_id device_id subv_id subd_id =
   with_string (fun buf size ->
     let lookup_flags = T.Lookup_mode.([ lookup_subsystem; lookup_device ]) in
     B.pci_lookup_name_4_ary pci_access buf size (crush_flags id lookup_flags)

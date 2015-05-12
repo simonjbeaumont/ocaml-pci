@@ -21,9 +21,9 @@ let _ =
     begin match subsystem_id d with
     | Some (sv_id, sd_id) ->
       Printf.printf "SVendor:\t%s [%04x]\n"
-        (lookup_vendor_name pci_access sv_id) sv_id;
+        (lookup_subsystem_vendor_name pci_access sv_id) sv_id;
       Printf.printf "SDevice:\t%s [%04x]\n"
-        (lookup_subsystem_name pci_access (vendor_id d) (device_id d) sv_id sd_id) sd_id
+        (lookup_subsystem_device_name pci_access (vendor_id d) (device_id d) sv_id sd_id) sd_id
     | None -> ()
     end;
     begin match phy_slot d with

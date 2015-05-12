@@ -42,4 +42,5 @@ val lookup_class_name : Pci_access.t -> int -> string
 val lookup_progif_name : Pci_access.t -> int -> int -> string
 val lookup_vendor_name : Pci_access.t -> int -> string
 val lookup_device_name : Pci_access.t -> int -> int -> string
-val lookup_subsystem_name : Pci_access.t -> int -> int -> int -> int -> string
+val lookup_subsystem_vendor_name : Pci_access.t -> int -> string
+val lookup_subsystem_device_name : Pci_access.t -> int -> int -> int -> int -> string
