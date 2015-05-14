@@ -1,9 +1,7 @@
 open Pci
 
 (* This should be equivalent to `lspci -nnnDv` *)
-let _ =
-  let pci_access = alloc () in
-  init pci_access;
+let lspci_nnnDv pci_access =
   scan_bus pci_access;
   let devs = Pci_access.devices pci_access in
   List.iter (fun d ->
@@ -44,4 +42,11 @@ let _ =
     ) (size d)
   end;
 
-  cleanup pci_access
+  Printf.printf "Looking up name of NVIDIA GRID K160Q...";
+  let nv_vid = 0x10de
+  and k1_did = 0x0ff7
+  and id_160 = 0x113b in
+  let n = lookup_subsystem_device_name pci_access nv_vid k1_did nv_vid id_160 in
+  Printf.printf "\"%s\"\n" n
+
+let () = with_access lspci_nnnDv

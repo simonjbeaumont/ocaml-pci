@@ -32,9 +32,6 @@ type fill_flag =
   | FILL_MODULE_ALIAS
   | FILL_RESCAN
 
-val alloc : unit -> Pci_access.t
-val init : Pci_access.t -> unit
-val cleanup : Pci_access.t -> unit
 val scan_bus : Pci_access.t -> unit
 val fill_info : Pci_dev.t -> fill_flag list -> int
 val read_byte : Pci_dev.t -> int -> int
@@ -44,3 +41,5 @@ val lookup_vendor_name : Pci_access.t -> int -> string
 val lookup_device_name : Pci_access.t -> int -> int -> string
 val lookup_subsystem_vendor_name : Pci_access.t -> int -> string
 val lookup_subsystem_device_name : Pci_access.t -> int -> int -> int -> int -> string
+
+val with_access : (Pci_access.t -> 'a) -> 'a
