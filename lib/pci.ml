@@ -127,3 +127,13 @@ let with_access f =
   in
   B.pci_cleanup pci_access;
   result
+
+let get_devices pci_access =
+  B.pci_scan_bus pci_access;
+  let devs = Pci_access.devices pci_access in
+  (* Be sure to fill all the fields that can be accessed from a Pci_dev.t *)
+  let all_fill_flags = [
+    FILL_IDENT; FILL_IRQ; FILL_BASES; FILL_ROM_BASE; FILL_SIZES; FILL_CLASS;
+    FILL_CAPS; FILL_EXT_CAPS; FILL_PHYS_SLOT; FILL_MODULE_ALIAS ] in
+  let fill_flags = crush_flags int_of_fill_flag all_fill_flags in
+  List.map (fun d -> let (_: int) = B.pci_fill_info d fill_flags in d) devs

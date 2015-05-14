@@ -2,11 +2,8 @@ open Pci
 
 (* This should be equivalent to `lspci -nnnDv` *)
 let lspci_nnnDv pci_access =
-  scan_bus pci_access;
-  let devs = Pci_access.devices pci_access in
+  let devs = get_devices pci_access in
   List.iter (fun d ->
-    let fill_flags = [ FILL_IDENT; FILL_CLASS; FILL_BASES; FILL_SIZES; FILL_PHYS_SLOT ] in
-    let (_: int) = fill_info d fill_flags in
     let open Pci_dev in
     Printf.printf "Device: %04x:%02x:%02x.%d\n"
       (domain d) (bus d) (dev d) (func d);

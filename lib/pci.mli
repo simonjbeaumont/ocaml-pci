@@ -16,24 +16,8 @@ end
 
 module Pci_access : sig
   type t
-  val devices : t -> Pci_dev.t list
 end
 
-type fill_flag =
-  | FILL_IDENT
-  | FILL_IRQ
-  | FILL_BASES
-  | FILL_ROM_BASE
-  | FILL_SIZES
-  | FILL_CLASS
-  | FILL_CAPS
-  | FILL_EXT_CAPS
-  | FILL_PHYS_SLOT
-  | FILL_MODULE_ALIAS
-  | FILL_RESCAN
-
-val scan_bus : Pci_access.t -> unit
-val fill_info : Pci_dev.t -> fill_flag list -> int
 val read_byte : Pci_dev.t -> int -> int
 val lookup_class_name : Pci_access.t -> int -> string
 val lookup_progif_name : Pci_access.t -> int -> int -> string
@@ -43,3 +27,4 @@ val lookup_subsystem_vendor_name : Pci_access.t -> int -> string
 val lookup_subsystem_device_name : Pci_access.t -> int -> int -> int -> int -> string
 
 val with_access : (Pci_access.t -> 'a) -> 'a
+val get_devices : Pci_access.t -> Pci_dev.t list
