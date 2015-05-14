@@ -18,7 +18,6 @@ module Pci_access : sig
   type t
 end
 
-val read_byte : Pci_dev.t -> int -> int
 val lookup_class_name : Pci_access.t -> int -> string
 val lookup_progif_name : Pci_access.t -> int -> int -> string
 val lookup_vendor_name : Pci_access.t -> int -> string
