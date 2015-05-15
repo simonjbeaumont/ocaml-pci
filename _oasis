@@ -41,7 +41,19 @@ Executable test_pci
   Path:           lib_test
   MainIs:         test_pci.ml
   CompiledObject: best
-  BuildDepends:   pci
+  BuildDepends:   pci, oUnit
 
 Test test_pci
   Command: $test_pci
+
+Flag examples
+  Description: Compile example executables
+  Default:     false
+
+Executable lspci
+  Build$:         flag(examples)
+  Install:        false
+  Path:           examples
+  MainIs:         lspci.ml
+  CompiledObject: best
+  BuildDepends:   pci

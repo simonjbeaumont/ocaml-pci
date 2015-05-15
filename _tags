@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: 84c60bea4d42863369c2ca3724b944dd)
+# DO NOT EDIT (digest: b673bda015420d0234a78ccc25d5f9f1)
 # Ignore VCS directories, you can use the same kind of rule outside
 # OASIS_START/STOP if you want to exclude directories that contains
 # useless stuff for the build process
@@ -41,9 +41,18 @@ true: annot, bin_annot
 <stubgen/*.ml{,i,y}>: use_pci_bindings
 # Executable test_pci
 <lib_test/test_pci.{native,byte}>: pkg_ctypes.stubs
+<lib_test/test_pci.{native,byte}>: pkg_oUnit
 <lib_test/test_pci.{native,byte}>: use_pci
 <lib_test/test_pci.{native,byte}>: use_pci_bindings
 <lib_test/*.ml{,i,y}>: pkg_ctypes.stubs
+<lib_test/*.ml{,i,y}>: pkg_oUnit
 <lib_test/*.ml{,i,y}>: use_pci
 <lib_test/*.ml{,i,y}>: use_pci_bindings
+# Executable lspci
+<examples/lspci.{native,byte}>: pkg_ctypes.stubs
+<examples/lspci.{native,byte}>: use_pci
+<examples/lspci.{native,byte}>: use_pci_bindings
+<examples/*.ml{,i,y}>: pkg_ctypes.stubs
+<examples/*.ml{,i,y}>: use_pci
+<examples/*.ml{,i,y}>: use_pci_bindings
 # OASIS_STOP
