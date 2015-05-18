@@ -10,6 +10,8 @@ module Pci_dev : sig
     irq : int;
     base_addr : nativeint list;
     size : nativeint list;
+    rom_base_addr : nativeint;
+    rom_size : nativeint;
     phy_slot : string option;
     subsystem_id : (int * int) option;
   }

@@ -18,6 +18,8 @@ module Pci_dev = struct
     irq : int;
     base_addr : nativeint list;
     size : nativeint list;
+    rom_base_addr : nativeint;
+    rom_size : nativeint;
     phy_slot : string option;
     subsystem_id : (int * int) option;
   }
@@ -33,6 +35,8 @@ module Pci_dev = struct
       irq = getf !@_t B.Pci_dev.irq;
       base_addr = getf !@_t B.Pci_dev.base_addr |> CArray.to_list;
       size = getf !@_t B.Pci_dev.size |> CArray.to_list;
+      rom_base_addr = getf !@_t B.Pci_dev.rom_base_addr;
+      rom_size = getf !@_t B.Pci_dev.rom_size;
       phy_slot = getf !@_t B.Pci_dev.phy_slot;
       subsystem_id =
         match (B.pci_read_byte _t T.Header.header_type |> U8.to_int) land 0x7f with
