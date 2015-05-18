@@ -113,18 +113,20 @@ let lookup_subsystem_device_name pci_access vendor_id device_id subv_id subd_id 
     B.pci_lookup_name_4_ary pci_access buf size (crush_flags id lookup_flags)
       vendor_id device_id subv_id subd_id)
 
-let with_access f =
+let with_access ?(cleanup=true) f =
   let pci_access = B.pci_alloc () in
-  let result =
-    try
-      B.pci_init pci_access;
-      f pci_access
-    with exn ->
-      (try B.pci_cleanup pci_access with _ -> ());
-      raise exn
-  in
-  B.pci_cleanup pci_access;
-  result
+  if not cleanup then f pci_access
+  else
+    let result =
+      try
+        B.pci_init pci_access;
+        f pci_access
+      with exn ->
+        (try B.pci_cleanup pci_access with _ -> ());
+        raise exn
+    in
+    B.pci_cleanup pci_access;
+    result
 
 let get_devices pci_access =
   B.pci_scan_bus pci_access;

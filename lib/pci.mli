@@ -25,5 +25,5 @@ val lookup_device_name : Pci_access.t -> int -> int -> string
 val lookup_subsystem_vendor_name : Pci_access.t -> int -> string
 val lookup_subsystem_device_name : Pci_access.t -> int -> int -> int -> int -> string
 
-val with_access : (Pci_access.t -> 'a) -> 'a
+val with_access : ?cleanup:bool -> (Pci_access.t -> 'a) -> 'a
 val get_devices : Pci_access.t -> Pci_dev.t list
