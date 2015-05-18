@@ -7,29 +7,45 @@ module U8 = Unsigned.UInt8
 module U16 = Unsigned.UInt16
 
 module Pci_dev = struct
-  type t = B.Pci_dev.t
-  let domain t = getf !@t B.Pci_dev.domain |> U16.to_int
-  let bus t = getf !@t B.Pci_dev.bus |> U8.to_int
-  let dev t = getf !@t B.Pci_dev.dev |> U8.to_int
-  let func t = getf !@t B.Pci_dev.func |> U8.to_int
-  let vendor_id t = getf !@t B.Pci_dev.vendor_id |> U16.to_int
-  let device_id t = getf !@t B.Pci_dev.device_id |> U16.to_int
-  let device_class t = getf !@t B.Pci_dev.device_class |> U16.to_int
-  let irq t = getf !@t B.Pci_dev.irq
-  let base_addr t = getf !@t B.Pci_dev.base_addr |> CArray.to_list
-  let size t = getf !@t B.Pci_dev.size |> CArray.to_list
-  let phy_slot t = getf !@t B.Pci_dev.phy_slot
-  let subsystem_id t =
-    match (B.pci_read_byte t T.Header.header_type |> U8.to_int) land 0x7f with
-    | x when x = T.Header.header_type_normal ->
-      Some (
-        B.pci_read_word t T.Header.subsystem_vendor_id |> U16.to_int,
-        B.pci_read_word t T.Header.subsystem_id |> U16.to_int)
-    | x when x = T.Header.header_type_cardbus ->
-      Some (
-        B.pci_read_word t T.Header.cb_subsystem_vendor_id |> U16.to_int,
-        B.pci_read_word t T.Header.cb_subsystem_id |> U16.to_int)
-    | _ -> None
+  type t = {
+    domain : int;
+    bus : int;
+    dev : int;
+    func : int;
+    vendor_id : int;
+    device_id : int;
+    device_class : int;
+    irq : int;
+    base_addr : nativeint list;
+    size : nativeint list;
+    phy_slot : string option;
+    subsystem_id : (int * int) option;
+  }
+  let make (_t: B.Pci_dev.t) =
+    {
+      domain = getf !@_t B.Pci_dev.domain |> U16.to_int;
+      bus = getf !@_t B.Pci_dev.bus |> U8.to_int;
+      dev = getf !@_t B.Pci_dev.dev |> U8.to_int;
+      func = getf !@_t B.Pci_dev.func |> U8.to_int;
+      vendor_id = getf !@_t B.Pci_dev.vendor_id |> U16.to_int;
+      device_id = getf !@_t B.Pci_dev.device_id |> U16.to_int;
+      device_class = getf !@_t B.Pci_dev.device_class |> U16.to_int;
+      irq = getf !@_t B.Pci_dev.irq;
+      base_addr = getf !@_t B.Pci_dev.base_addr |> CArray.to_list;
+      size = getf !@_t B.Pci_dev.size |> CArray.to_list;
+      phy_slot = getf !@_t B.Pci_dev.phy_slot;
+      subsystem_id =
+        match (B.pci_read_byte _t T.Header.header_type |> U8.to_int) land 0x7f with
+        | x when x = T.Header.header_type_normal ->
+          Some (
+            B.pci_read_word _t T.Header.subsystem_vendor_id |> U16.to_int,
+            B.pci_read_word _t T.Header.subsystem_id |> U16.to_int)
+        | x when x = T.Header.header_type_cardbus ->
+          Some (
+            B.pci_read_word _t T.Header.cb_subsystem_vendor_id |> U16.to_int,
+            B.pci_read_word _t T.Header.cb_subsystem_id |> U16.to_int)
+        | _ -> None
+    }
 end
 
 module Pci_access = struct
@@ -135,5 +151,5 @@ let get_devices pci_access =
   let all_fill_flags = [
     FILL_IDENT; FILL_IRQ; FILL_BASES; FILL_ROM_BASE; FILL_SIZES; FILL_CLASS;
     FILL_CAPS; FILL_EXT_CAPS; FILL_PHYS_SLOT; FILL_MODULE_ALIAS ] in
-  let fill_flags = crush_flags int_of_fill_flag all_fill_flags in
-  List.map (fun d -> let (_: int) = B.pci_fill_info d fill_flags in d) devs
+  let flags = crush_flags int_of_fill_flag all_fill_flags in
+  List.map (fun d -> let (_: int) = B.pci_fill_info d flags in Pci_dev.make d) devs

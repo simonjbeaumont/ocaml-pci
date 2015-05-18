@@ -16,7 +16,7 @@ let vm_size () =
 
 
 let smoke_test () =
-  with_access (fun _ -> ())
+  with_access (fun a -> let (_: Pci_dev.t list) = get_devices a in ())
 
 let test_with_access_cleanup () =
   (* Get overhead for calling the fuction and the measuremnt functions *)

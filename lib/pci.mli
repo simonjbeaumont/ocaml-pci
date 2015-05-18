@@ -1,17 +1,18 @@
 module Pci_dev : sig
-  type t
-  val domain : t -> int
-  val bus : t -> int
-  val dev : t -> int
-  val func : t -> int
-  val vendor_id : t -> int
-  val device_id : t -> int
-  val device_class : t -> int
-  val irq : t -> int
-  val base_addr : t -> nativeint list
-  val size : t -> nativeint list
-  val phy_slot : t -> string option
-  val subsystem_id : t -> (int * int) option
+  type t = {
+    domain : int;
+    bus : int;
+    dev : int;
+    func : int;
+    vendor_id : int;
+    device_id : int;
+    device_class : int;
+    irq : int;
+    base_addr : nativeint list;
+    size : nativeint list;
+    phy_slot : string option;
+    subsystem_id : (int * int) option;
+  }
 end
 
 module Pci_access : sig
