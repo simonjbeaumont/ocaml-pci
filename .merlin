@@ -1,0 +1,12 @@
+PRJ pci
+PKG ctypes
+PKG ctypes.stubs
+PKG oUnit
+
+S lib
+S lib_test
+S bindings
+S stubgen
+S examples
+
+B _build/**
