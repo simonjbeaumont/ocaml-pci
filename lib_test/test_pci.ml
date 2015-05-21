@@ -5,9 +5,7 @@ let resident_pages () =
   let with_channel c f =
     try let r = f c in close_in c; r
     with exn -> close_in_noerr c; raise exn in
-  let statm_path = List.fold_left Filename.concat "/"
-    [ "proc"; Unix.getpid () |> string_of_int; "statm" ] in
-  let statm = with_channel (open_in statm_path) input_line in
+  let statm = with_channel (open_in "/proc/self/statm") input_line in
   Scanf.sscanf statm "%d %d %d %d %d %d %d" (fun _ res _ _ _ _ _ -> res)
 
 let smoke_test () =
