@@ -141,12 +141,11 @@ let with_access ?(cleanup=true) ?from_dump f =
     setf !@pci_access B.Pci_access.method_ T.Access_type.dump;
     ignore @@ B.pci_set_param pci_access "dump.name" path;
   ) from_dump;
+  B.pci_init pci_access;
   if not cleanup then f pci_access
   else
     let result =
-      try
-        B.pci_init pci_access;
-        f pci_access
+      try f pci_access
       with exn ->
         (try B.pci_cleanup pci_access with _ -> ());
         raise exn
