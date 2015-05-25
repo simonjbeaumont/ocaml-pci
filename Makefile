@@ -39,3 +39,8 @@ configure:
 .PHONY: build doc test all install uninstall reinstall clean distclean configure
 
 # OASIS_STOP
+.PHONY: coverage
+coverage:
+	find . -name "bisect*" | xargs rm -f
+	BISECT_FILE=_build/bisect ./test_pci.native
+	(cd _build; bisect-report bisect* -summary-only -text coverage; cat coverage)
