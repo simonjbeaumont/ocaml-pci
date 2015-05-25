@@ -59,6 +59,11 @@ module Types (F: Cstubs.Types.TYPE) = struct
     let cb_subsystem_vendor_id = F.constant "PCI_CB_SUBSYSTEM_VENDOR_ID" F.int
     let cb_subsystem_id = F.constant "PCI_CB_SUBSYSTEM_ID" F.int
   end
+  module Access_type = struct
+    (* Just a subset of the access types we'll need internally *)
+    let auto = F.constant "PCI_ACCESS_AUTO" F.uint
+    let dump = F.constant "PCI_ACCESS_DUMP" F.uint
+  end
 end
 
 module Bindings (F : Cstubs.FOREIGN) = struct

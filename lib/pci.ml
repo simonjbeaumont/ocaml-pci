@@ -92,6 +92,8 @@ let crush_flags f =
   List.fold_left (fun i o -> i lor (f o)) 0
 let id x = x
 
+let maybe f = function Some x -> f x | None -> ()
+
 let scan_bus = B.pci_scan_bus
 
 let fill_info d flag_list =
@@ -133,8 +135,12 @@ let lookup_subsystem_device_name pci_access vendor_id device_id subv_id subd_id 
     B.pci_lookup_name_4_ary pci_access buf size (crush_flags id lookup_flags)
       vendor_id device_id subv_id subd_id)
 
-let with_access ?(cleanup=true) f =
+let with_access ?(cleanup=true) ?from_dump f =
   let pci_access = B.pci_alloc () in
+  maybe (fun path ->
+    setf !@pci_access B.Pci_access.method_ T.Access_type.dump;
+    ignore @@ B.pci_set_param pci_access "dump.name" path;
+  ) from_dump;
   if not cleanup then f pci_access
   else
     let result =
