@@ -20,11 +20,11 @@ let test_with_access_cleanup () =
   for i = 1 to 6000 do with_dump ~cleanup:true (fun _ -> ()) done;
   let mem = Gc.compact (); resident_pages () in
   (* The incremental cost of calling with_access should be 0 *)
-  for i = 1 to 100 do with_dump ~cleanup:true (fun _ -> ()) done;
+  for i = 1 to 1000 do with_dump ~cleanup:true (fun _ -> ()) done;
   let mem' = Gc.compact (); resident_pages () in
   assert_equal ~printer:(Printf.sprintf "VmRSS = %d pages") mem mem';
   (* Checking for a difference with cleanup=false as a negative test *)
-  for i = 1 to 100 do with_dump ~cleanup:false (fun _ -> ()) done;
+  for i = 1 to 1000 do with_dump ~cleanup:false (fun _ -> ()) done;
   let mem'' = Gc.compact (); resident_pages () in
   assert_raises (OUnitTest.OUnit_failure "not equal") (fun () ->
     assert_equal mem' mem'')
