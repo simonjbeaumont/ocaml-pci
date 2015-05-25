@@ -17,7 +17,7 @@ let smoke_test () =
 let test_with_access_cleanup () =
   (* Get overhead for calling the fuction and the measuremnt functions *)
   let _ = Gc.compact (); resident_pages () in
-  for i = 1 to 4000 do with_dump ~cleanup:true (fun _ -> ()) done;
+  for i = 1 to 6000 do with_dump ~cleanup:true (fun _ -> ()) done;
   let mem = Gc.compact (); resident_pages () in
   (* The incremental cost of calling with_access should be 0 *)
   for i = 1 to 100 do with_dump ~cleanup:true (fun _ -> ()) done;
