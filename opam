@@ -14,7 +14,10 @@ build-test: [
   [make "test"]
 ]
 install: [make "install"]
-remove: [make "uninstall"]
+remove: [
+  ["ocamlfind" "remove" "pci"]
+  ["ocamlfind" "remove" "pci_bindings"]
+]
 depends: [
   "ctypes" {>= "0.4"}
   "ocamlfind" {build}
