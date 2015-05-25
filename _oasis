@@ -15,24 +15,32 @@ Library pci
   CSources:         ffi_generated_stubs.c
   CCLib:            -lpci
   CCOpt:            -I $pkg_ctypes_stubs
+  ByteOpt:          -warn-error +a
+  NativeOpt:        -warn-error +a
   BuildDepends:     pci_bindings, ctypes.stubs
 
 Library pci_bindings
   Install:          true
   Path:             bindings
   Modules:          Ffi_bindings
+  ByteOpt:          -warn-error +a
+  NativeOpt:        -warn-error +a
   BuildDepends:     ctypes.stubs
 
 Executable ffi_stubgen
   Install:        false
   Path:           stubgen
   MainIs:         ffi_stubgen.ml
+  ByteOpt:        -warn-error +a
+  NativeOpt:      -warn-error +a
   BuildDepends:   pci_bindings
 
 Executable ffi_types_stubgen
   Install:        false
   Path:           stubgen
   MainIs:         ffi_types_stubgen.ml
+  ByteOpt:        -warn-error +a
+  NativeOpt:      -warn-error +a
   BuildDepends:   pci_bindings
 
 Executable test_pci
@@ -41,6 +49,8 @@ Executable test_pci
   Path:           lib_test
   MainIs:         test_pci.ml
   CompiledObject: best
+  ByteOpt:        -warn-error +a
+  NativeOpt:      -warn-error +a
   BuildDepends:   pci, oUnit
 
 Test test_pci
@@ -56,4 +66,6 @@ Executable lspci
   Path:           examples
   MainIs:         lspci.ml
   CompiledObject: best
+  ByteOpt:        -warn-error +a
+  NativeOpt:      -warn-error +a
   BuildDepends:   pci
