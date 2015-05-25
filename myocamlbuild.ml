@@ -1,5 +1,5 @@
 (* OASIS_START *)
-(* DO NOT EDIT (digest: 562963bd353b3d688997d8015a67e0e5) *)
+(* DO NOT EDIT (digest: 2a9b044eb24030705ed41a02dbc359db) *)
 module OASISGettext = struct
 (* # 22 "src/oasis/OASISGettext.ml" *)
 
@@ -612,6 +612,24 @@ let package_default =
      lib_c = [("pci", "lib", [])];
      flags =
        [
+          (["oasis_library_pci_bindings_byte"; "ocaml"; "link"; "byte"],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          (["oasis_library_pci_bindings_native"; "ocaml"; "link"; "native"],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          (["oasis_library_pci_bindings_byte"; "ocaml"; "ocamldep"; "byte"],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          ([
+              "oasis_library_pci_bindings_native";
+              "ocaml";
+              "ocamldep";
+              "native"
+           ],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          (["oasis_library_pci_bindings_byte"; "ocaml"; "compile"; "byte"],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          (["oasis_library_pci_bindings_native"; "ocaml"; "compile"; "native"
+           ],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
           (["oasis_library_pci_ccopt"; "compile"],
             [
                (OASISExpr.EBool true,
@@ -620,7 +638,108 @@ let package_default =
           (["oasis_library_pci_cclib"; "link"],
             [(OASISExpr.EBool true, S [A "-cclib"; A "-lpci"])]);
           (["oasis_library_pci_cclib"; "ocamlmklib"; "c"],
-            [(OASISExpr.EBool true, S [A "-lpci"])])
+            [(OASISExpr.EBool true, S [A "-lpci"])]);
+          (["oasis_library_pci_byte"; "ocaml"; "link"; "byte"],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          (["oasis_library_pci_native"; "ocaml"; "link"; "native"],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          (["oasis_library_pci_byte"; "ocaml"; "ocamldep"; "byte"],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          (["oasis_library_pci_native"; "ocaml"; "ocamldep"; "native"],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          (["oasis_library_pci_byte"; "ocaml"; "compile"; "byte"],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          (["oasis_library_pci_native"; "ocaml"; "compile"; "native"],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          (["oasis_executable_ffi_stubgen_byte"; "ocaml"; "link"; "byte"],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          (["oasis_executable_ffi_stubgen_native"; "ocaml"; "link"; "native"],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          (["oasis_executable_ffi_stubgen_byte"; "ocaml"; "ocamldep"; "byte"],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          ([
+              "oasis_executable_ffi_stubgen_native";
+              "ocaml";
+              "ocamldep";
+              "native"
+           ],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          (["oasis_executable_ffi_stubgen_byte"; "ocaml"; "compile"; "byte"],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          ([
+              "oasis_executable_ffi_stubgen_native";
+              "ocaml";
+              "compile";
+              "native"
+           ],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          ([
+              "oasis_executable_ffi_types_stubgen_byte";
+              "ocaml";
+              "link";
+              "byte"
+           ],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          ([
+              "oasis_executable_ffi_types_stubgen_native";
+              "ocaml";
+              "link";
+              "native"
+           ],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          ([
+              "oasis_executable_ffi_types_stubgen_byte";
+              "ocaml";
+              "ocamldep";
+              "byte"
+           ],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          ([
+              "oasis_executable_ffi_types_stubgen_native";
+              "ocaml";
+              "ocamldep";
+              "native"
+           ],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          ([
+              "oasis_executable_ffi_types_stubgen_byte";
+              "ocaml";
+              "compile";
+              "byte"
+           ],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          ([
+              "oasis_executable_ffi_types_stubgen_native";
+              "ocaml";
+              "compile";
+              "native"
+           ],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          (["oasis_executable_test_pci_byte"; "ocaml"; "link"; "byte"],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          (["oasis_executable_test_pci_native"; "ocaml"; "link"; "native"],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          (["oasis_executable_test_pci_byte"; "ocaml"; "ocamldep"; "byte"],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          (["oasis_executable_test_pci_native"; "ocaml"; "ocamldep"; "native"
+           ],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          (["oasis_executable_test_pci_byte"; "ocaml"; "compile"; "byte"],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          (["oasis_executable_test_pci_native"; "ocaml"; "compile"; "native"],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          (["oasis_executable_lspci_byte"; "ocaml"; "link"; "byte"],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          (["oasis_executable_lspci_native"; "ocaml"; "link"; "native"],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          (["oasis_executable_lspci_byte"; "ocaml"; "ocamldep"; "byte"],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          (["oasis_executable_lspci_native"; "ocaml"; "ocamldep"; "native"],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          (["oasis_executable_lspci_byte"; "ocaml"; "compile"; "byte"],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])]);
+          (["oasis_executable_lspci_native"; "ocaml"; "compile"; "native"],
+            [(OASISExpr.EBool true, S [A "-warn-error"; A "+a"])])
        ];
      includes =
        [
@@ -636,7 +755,7 @@ let conf = {MyOCamlbuildFindlib.no_automatic_syntax = false}
 
 let dispatch_default = MyOCamlbuildBase.dispatch_default conf package_default;;
 
-# 640 "myocamlbuild.ml"
+# 759 "myocamlbuild.ml"
 (* OASIS_STOP *)
 
 let dispatch = function
