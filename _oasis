@@ -27,6 +27,13 @@ Library pci_bindings
   NativeOpt:        -warn-error +a
   BuildDepends:     ctypes.stubs
 
+Document pci
+  Type:                 ocamlbuild (0.4)
+  BuildTools:           ocamldoc
+  Title:                API reference for Pci
+  XOCamlBuildPath:      .
+  XOCamlBuildLibraries: pci
+
 Executable ffi_stubgen
   Install:        false
   Path:           stubgen

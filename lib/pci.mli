@@ -1,3 +1,4 @@
+(** A wrapper library around bindings to [libpci] *)
 module Pci_dev : sig
   type t = {
     domain : int;
