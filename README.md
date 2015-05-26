@@ -7,7 +7,7 @@ ocaml-pci
 An OCaml library exposing an API over bindings to `libpci`.
 
 This library uses Ctypes to generate type-safe bindings to `libpci` which is
-part of "[http://mj.ucw.cz/sw/pciutils/](The PCI Utilities)" package shipped
+part of "[The PCI Utilities](http://mj.ucw.cz/sw/pciutils/)" package shipped
 with most operating systems.
 
 Rather than being a completely transparent set of bindings, this library
