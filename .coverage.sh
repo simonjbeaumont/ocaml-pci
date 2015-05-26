@@ -1,15 +1,36 @@
 #!/bin/sh
 
+set -ex
+
+COVERAGE_DIR=.coverage
+rm -rf $COVERAGE_DIR
+mkdir -p $COVERAGE_DIR
+pushd $COVERAGE_DIR
+trap "popd; rm -rf $COVERAGE_DIR" EXIT
+
+$(which cp) -r ../* .
+
 eval `opam config env`
 opam install -y bisect_ppx oasis ocveralls
 
-sed '/BuildDepends:/ s/$/, bisect_ppx/' _oasis > _oasis_with_bisect
-oasis setup -oasis _oasis_with_bisect
+sed -i '/BuildDepends:/ s/$/, bisect_ppx/' _oasis
+oasis setup
 
 ./configure --enable-tests
 make
 
-rm -f _build/bisect*
-BISECT_FILE=_build/bisect ./test_pci.native
+find . -name bisect* | xargs rm -f
+./test_pci.native
 
-ocveralls --prefix _build _build/bisect* --send
+bisect-report bisect*.out -I _build -text report
+bisect-report bisect*.out -I _build -summary-only -text summary
+(cd _build; bisect-report ../bisect*.out -html ../report-html)
+
+cat report
+cat summary
+
+if [ -n "$TRAVIS" ]; then
+  ocveralls --prefix _build bisect* --send
+else
+  echo "\$TRAVIS not set, not running ocveralls..."
+fi
