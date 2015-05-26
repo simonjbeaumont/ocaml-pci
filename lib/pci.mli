@@ -34,8 +34,8 @@ end
 
 val lookup_class_name : Pci_access.t -> int -> string
 (** [lookup_class_name a id] wraps pci_lookup_name with the right flags to
-    lookup the name for the class whose identifier is [id]. If [libpci] cannot
-    find a match it returns "Class [id]". *)
+    lookup the name for the class whose identifier is [id] using the access
+    value [a]. If [libpci] cannot find a match it returns "Class [id]". *)
 
 val lookup_progif_name : Pci_access.t -> int -> int -> string
 (** [lookup_progif_name a c_id id] is like {!lookup_class_name} but returns
@@ -69,6 +69,7 @@ val with_access : ?cleanup:bool -> ?from_dump:string -> (Pci_access.t -> 'a) -> 
     re-raised. *)
 
 val get_devices : Pci_access.t -> Pci_dev.t list
-(** [get_devices a] returns a list of devices found on the PCI bus.
-    It wraps the [libpci] call to [pci_scan_bus] and calls [pci_fill_info] for
-    each of the devices on the bus before returning a list of [Pci_dev.t]. *)
+(** [get_devices a] returns a list of devices found on the PCI bus for access
+    value [a]. It wraps the [libpci] call to [pci_scan_bus] and calls
+    [pci_fill_info] for each of the devices on the bus before returning a list
+    of [Pci_dev.t]. *)
