@@ -22,15 +22,14 @@ make
 find . -name bisect* | xargs rm -f
 ./test_pci.native
 
-bisect-report bisect*.out -I _build -text report
-bisect-report bisect*.out -I _build -summary-only -text summary
-(cd _build; bisect-report ../bisect*.out -html ../report-html)
-
-cat report
-cat summary
-
 if [ -n "$TRAVIS" ]; then
+  echo "\$TRAVIS set; running ocveralls and sending to coveralls.io..."
   ocveralls --prefix _build bisect* --send
 else
-  echo "\$TRAVIS not set, not running ocveralls..."
+  echo "\$TRAVIS not set; running bisect-report..."
+  bisect-report bisect*.out -I _build -text report
+  bisect-report bisect*.out -I _build -summary-only -text summary
+  (cd _build; bisect-report ../bisect*.out -html ../report-html)
+  cat report
+  cat summary
 fi
