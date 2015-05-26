@@ -1,4 +1,14 @@
-(** A wrapper library around bindings to [libpci] *)
+(** A wrapper library around bindings to [libpci].
+
+    [Pci] exposes a subset of the functionality of [libpci] as part of
+    "{{:http://mj.ucw.cz/sw/pciutils/} The PCI Utilities}" package shipped with
+    most operating systems.
+
+    Rather than being a completely transparent set of bindings, this library
+    exposes an API to wrap some of the composite functions to ensure correct
+    memory allocation and cleanup. This should reduce memory leaks and
+    segfaults which are possible with incorrect use of [libpci]. *)
+
 module Pci_dev : sig
   type t = {
     domain : int;
