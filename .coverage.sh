@@ -11,7 +11,7 @@ trap "popd; rm -rf $COVERAGE_DIR" EXIT
 $(which cp) -r ../* .
 
 eval `opam config env`
-opam install -y bisect_ppx oasis ocveralls
+opam install -y bisect_ppx oasis
 
 sed -i '/BuildDepends:/ s/$/, bisect_ppx/' _oasis
 oasis setup
@@ -23,8 +23,21 @@ find . -name bisect* | xargs rm -f
 ./test_pci.native
 
 if [ -n "$TRAVIS" ]; then
-  echo "\$TRAVIS set; running ocveralls and sending to coveralls.io..."
-  ocveralls --prefix _build bisect* --send
+  echo "\$TRAVIS set; sending coverage to coveralls.io..."
+  echo "Getting patched version of bisect-report"
+  curl -L http://bisect.sagotch.fr | tar -xzf -
+  chmod +x Bisect/configure
+  (cd Bisect; ./configure)
+  make -C Bisect all
+  echo "Generating coveralls data"
+  (cd _build; \
+    ../Bisect/_build/src/report/report.native \
+      -coveralls-property service_job_id "$TRAVIS_JOB_ID" \
+      -coveralls-property service_name "travis-ci" \
+      -coveralls ../coveralls.json \
+      ../bisect*.out)
+  echo "Sending to coveralls.io"
+  curl -F json_file=@coveralls.json https://coveralls.io/api/v1/jobs
 else
   echo "\$TRAVIS not set; running bisect-report..."
   bisect-report bisect*.out -I _build -text report
