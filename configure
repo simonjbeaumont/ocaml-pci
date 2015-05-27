@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-trap "rm -f /tmp/libpci_check" EXIT
+trap "rm -f libpci_check" EXIT
 (gcc -lpci stubgen/libpci_check.c -o libpci_check 2>/dev/null && ./libpci_check) ||
   (echo "Package needs libpci-dev >= 3.2.0 to be installed on your system"; exit 1)
 
