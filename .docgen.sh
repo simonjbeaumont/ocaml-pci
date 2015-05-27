@@ -1,6 +1,9 @@
 #!/bin/sh
 set -ex
 
+./configure --enable-docs
+make doc
+
 if [ -z "$TRAVIS" -o "$TRAVIS_PULL_REQUEST" != "false" ]; then
   echo "This is not a push Travis-ci build, doing nothing..."
   exit 0

@@ -39,5 +39,5 @@ configure:
 .PHONY: build doc test all install uninstall reinstall clean distclean configure
 
 # OASIS_STOP
-gh-pages: doc
+gh-pages:
 	bash .docgen.sh
