@@ -1,6 +1,7 @@
 #!/bin/sh
 set -ex
 
+eval `opam config env`
 ./configure --enable-docs
 make doc
 
