@@ -40,13 +40,4 @@ configure:
 
 # OASIS_STOP
 gh-pages: doc
-	rm -rf $@
-	git clone https://github.com/simonjbeaumont/ocaml-pci $@ --reference .
-	git -C $@ checkout --orphan gh-pages
-	git -C $@ reset
-	git -C $@ clean -dxf
-	cp _build/pci.docdir/* $@
-	git -C $@ add .
-	git -C $@ commit -m "Update Pages"
-	git -C $@ push origin gh-pages -f
-	rm -rf $@
+	bash .docgen.sh
