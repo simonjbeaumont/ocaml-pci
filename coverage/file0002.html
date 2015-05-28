@@ -1,0 +1,197 @@
+<html>
+  <head>
+    <title>Bisect report</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript">
+      <!--
+        function jump(id) {
+          document.body.scrollTop = document.getElementById(id).offsetTop;
+        }
+      -->
+    </script>
+    <script language="javascript" src="file0002.js"></script>
+  </head>
+  <body>
+    <div class="section">File: lib_test/test_pci.ml (<a href="index.html">return to index</a>)</div>
+    <br/>
+    <hr class="codeSep"/>
+    <br/>
+    <table>
+      <tr>
+        <td valign="top" class="section">Statistics:&nbsp;&nbsp;</td>
+        <td valign="top">
+          <table class="simple">
+            <tr><th>kind</th><th width="16px">&nbsp;</th><th>coverage</th></tr>
+            <tr><td>binding</td><td width="16px">&nbsp;</td><td>6 / 16 (37%)</td></tr>
+            <tr><td>sequence</td><td width="16px">&nbsp;</td><td>7 / 27 (25%)</td></tr>
+            <tr><td>for</td><td width="16px">&nbsp;</td><td>0 / 3 (0%)</td></tr>
+            <tr><td>if/then</td><td width="16px">&nbsp;</td><td>0 / 0 (-%)</td></tr>
+            <tr><td>try</td><td width="16px">&nbsp;</td><td>0 / 0 (-%)</td></tr>
+            <tr><td>while</td><td width="16px">&nbsp;</td><td>0 / 0 (-%)</td></tr>
+            <tr><td>match/function</td><td width="16px">&nbsp;</td><td>0 / 0 (-%)</td></tr>
+          </table>
+        </td>
+        <td valign="top">
+          <table class="simple">
+            <tr><th>kind</th><th width="16px">&nbsp;</th><th>coverage</th></tr>
+            <tr><td>class expression</td><td width="16px">&nbsp;</td><td>0 / 0 (-%)</td></tr>
+            <tr><td>class initializer</td><td width="16px">&nbsp;</td><td>0 / 0 (-%)</td></tr>
+            <tr><td>class method</td><td width="16px">&nbsp;</td><td>0 / 0 (-%)</td></tr>
+            <tr><td>class value</td><td width="16px">&nbsp;</td><td>0 / 0 (-%)</td></tr>
+            <tr><td>toplevel expression</td><td width="16px">&nbsp;</td><td>1 / 1 (100%)</td></tr>
+            <tr><td>lazy operator</td><td width="16px">&nbsp;</td><td>0 / 0 (-%)</td></tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <br/>
+    <hr class="codeSep"/>
+    <br/>
+    <div class="section">Source:</div>
+    <br/>
+<div style="font-size: smaller;"><a href="javascript:foldAll();">fold all</a> <a href="javascript:unfoldAll();">unfold all</a></div>
+    <code>
+      <div id="fold000001">
+      <div id="line000001" class="lineNone"><a href="javascript:fold('fold000001');"><img border="0" height="10" width="10" src="minus.png" title="fold code"/></a>000001| open&nbsp;OUnit</div>
+      <div id="line000002" class="lineNone"><img border="0" height="10" width="10"src="dash.png"/>000002| open&nbsp;Pci</div>
+      <div id="line000003" class="lineNone"><img border="0" height="10" width="10"src="dash.png"/>000003| &nbsp;</div>
+      <div id="line000004" class="lineNone"><img border="0" height="10" width="10"src="dash.png"/>000004| let&nbsp;with_dump&nbsp;=</div>
+      <div id="line000005" class="lineAllVisited"><img border="0" height="10" width="10"src="dash.png"/>000005| &nbsp;&nbsp;(*[1]*)with_access&nbsp;~from_dump:(Filename.concat&nbsp;(Sys.getcwd&nbsp;())&nbsp;&quot;lib_test/dump.data&quot;)</div>
+      <div id="line000006" class="lineNone"><img border="0" height="10" width="10"src="dash.png"/>000006| &nbsp;</div>
+      <div id="line000007" class="lineNone"><img border="0" height="10" width="10"src="dash.png"/>000007| let&nbsp;resident_pages&nbsp;()&nbsp;=</div>
+      </div>
+      <div id="line000008" class="lineAllUnvisited"><img border="0" height="10" width="10"src="blank.png"/>000008| &nbsp;&nbsp;(*[0]*)let&nbsp;with_channel&nbsp;c&nbsp;f&nbsp;=</div>
+      <div id="line000009" class="lineAllUnvisited"><img border="0" height="10" width="10"src="blank.png"/>000009| &nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;(*[0]*)let&nbsp;r&nbsp;=&nbsp;(*[0]*)f&nbsp;c&nbsp;in&nbsp;(*[0]*)close_in&nbsp;c;&nbsp;(*[0]*)r</div>
+      <div id="line000010" class="lineAllUnvisited"><img border="0" height="10" width="10"src="blank.png"/>000010| &nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;exn&nbsp;-&gt;&nbsp;(*[0]*)close_in_noerr&nbsp;c;&nbsp;(*[0]*)raise&nbsp;exn&nbsp;in</div>
+      <div id="line000011" class="lineAllUnvisited"><img border="0" height="10" width="10"src="blank.png"/>000011| &nbsp;&nbsp;(*[0]*)let&nbsp;statm&nbsp;=&nbsp;(*[0]*)with_channel&nbsp;(open_in&nbsp;&quot;/proc/self/statm&quot;)&nbsp;input_line&nbsp;in</div>
+      <div id="line000012" class="lineAllUnvisited"><img border="0" height="10" width="10"src="blank.png"/>000012| &nbsp;&nbsp;(*[0]*)Scanf.sscanf&nbsp;statm&nbsp;&quot;%d&nbsp;%d&nbsp;%d&nbsp;%d&nbsp;%d&nbsp;%d&nbsp;%d&quot;&nbsp;(fun&nbsp;_&nbsp;res&nbsp;_&nbsp;_&nbsp;_&nbsp;_&nbsp;_&nbsp;-&gt;&nbsp;res)</div>
+      <div id="fold000013">
+      <div id="line000013" class="lineNone"><a href="javascript:fold('fold000013');"><img border="0" height="10" width="10" src="minus.png" title="fold code"/></a>000013| &nbsp;</div>
+      <div id="line000014" class="lineNone"><img border="0" height="10" width="10"src="dash.png"/>000014| let&nbsp;smoke_test&nbsp;()&nbsp;=</div>
+      </div>
+      <div id="line000015" class="lineAllUnvisited"><img border="0" height="10" width="10"src="blank.png"/>000015| &nbsp;&nbsp;(*[0]*)with_dump&nbsp;(fun&nbsp;a&nbsp;-&gt;&nbsp;let&nbsp;(_:&nbsp;Pci_dev.t&nbsp;list)&nbsp;=&nbsp;(*[0]*)get_devices&nbsp;a&nbsp;in&nbsp;(*[0]*)())</div>
+      <div id="fold000016">
+      <div id="line000016" class="lineNone"><a href="javascript:fold('fold000016');"><img border="0" height="10" width="10" src="minus.png" title="fold code"/></a>000016| &nbsp;</div>
+      <div id="line000017" class="lineNone"><img border="0" height="10" width="10"src="dash.png"/>000017| let&nbsp;test_with_access_cleanup&nbsp;()&nbsp;=</div>
+      <div id="line000018" class="lineNone"><img border="0" height="10" width="10"src="dash.png"/>000018| &nbsp;&nbsp;(*&nbsp;Get&nbsp;overhead&nbsp;for&nbsp;calling&nbsp;the&nbsp;fuction&nbsp;and&nbsp;the&nbsp;measuremnt&nbsp;functions&nbsp;*)</div>
+      </div>
+      <div id="line000019" class="lineAllUnvisited"><img border="0" height="10" width="10"src="blank.png"/>000019| &nbsp;&nbsp;(*[0]*)let&nbsp;_&nbsp;=&nbsp;(*[0]*)Gc.compact&nbsp;();&nbsp;(*[0]*)resident_pages&nbsp;()&nbsp;in</div>
+      <div id="line000020" class="lineAllUnvisited"><img border="0" height="10" width="10"src="blank.png"/>000020| &nbsp;&nbsp;(*[0]*)for&nbsp;i&nbsp;=&nbsp;1&nbsp;to&nbsp;6000&nbsp;do&nbsp;(*[0]*)with_dump&nbsp;~cleanup:true&nbsp;(fun&nbsp;_&nbsp;-&gt;&nbsp;())&nbsp;done;</div>
+      <div id="line000021" class="lineAllUnvisited"><img border="0" height="10" width="10"src="blank.png"/>000021| &nbsp;&nbsp;(*[0]*)let&nbsp;mem&nbsp;=&nbsp;(*[0]*)Gc.compact&nbsp;();&nbsp;(*[0]*)resident_pages&nbsp;()&nbsp;in</div>
+      <div id="fold000022">
+      <div id="line000022" class="lineNone"><a href="javascript:fold('fold000022');"><img border="0" height="10" width="10" src="minus.png" title="fold code"/></a>000022| &nbsp;&nbsp;(*&nbsp;The&nbsp;incremental&nbsp;cost&nbsp;of&nbsp;calling&nbsp;with_access&nbsp;should&nbsp;be&nbsp;0&nbsp;*)</div>
+      </div>
+      <div id="line000023" class="lineAllUnvisited"><img border="0" height="10" width="10"src="blank.png"/>000023| &nbsp;&nbsp;(*[0]*)for&nbsp;i&nbsp;=&nbsp;1&nbsp;to&nbsp;1000&nbsp;do&nbsp;(*[0]*)with_dump&nbsp;~cleanup:true&nbsp;(fun&nbsp;_&nbsp;-&gt;&nbsp;())&nbsp;done;</div>
+      <div id="line000024" class="lineAllUnvisited"><img border="0" height="10" width="10"src="blank.png"/>000024| &nbsp;&nbsp;(*[0]*)let&nbsp;mem'&nbsp;=&nbsp;(*[0]*)Gc.compact&nbsp;();&nbsp;(*[0]*)resident_pages&nbsp;()&nbsp;in</div>
+      <div id="line000025" class="lineAllUnvisited"><img border="0" height="10" width="10"src="blank.png"/>000025| &nbsp;&nbsp;(*[0]*)assert_equal&nbsp;~printer:(Printf.sprintf&nbsp;&quot;VmRSS&nbsp;=&nbsp;%d&nbsp;pages&quot;)&nbsp;mem&nbsp;mem';</div>
+      <div id="fold000026">
+      <div id="line000026" class="lineNone"><a href="javascript:fold('fold000026');"><img border="0" height="10" width="10" src="minus.png" title="fold code"/></a>000026| &nbsp;&nbsp;(*&nbsp;Checking&nbsp;for&nbsp;a&nbsp;difference&nbsp;with&nbsp;cleanup=false&nbsp;as&nbsp;a&nbsp;negative&nbsp;test&nbsp;*)</div>
+      </div>
+      <div id="line000027" class="lineAllUnvisited"><img border="0" height="10" width="10"src="blank.png"/>000027| &nbsp;&nbsp;(*[0]*)for&nbsp;i&nbsp;=&nbsp;1&nbsp;to&nbsp;1000&nbsp;do&nbsp;(*[0]*)with_dump&nbsp;~cleanup:false&nbsp;(fun&nbsp;_&nbsp;-&gt;&nbsp;())&nbsp;done;</div>
+      <div id="line000028" class="lineAllUnvisited"><img border="0" height="10" width="10"src="blank.png"/>000028| &nbsp;&nbsp;(*[0]*)let&nbsp;mem''&nbsp;=&nbsp;(*[0]*)Gc.compact&nbsp;();&nbsp;(*[0]*)resident_pages&nbsp;()&nbsp;in</div>
+      <div id="line000029" class="lineAllUnvisited"><img border="0" height="10" width="10"src="blank.png"/>000029| &nbsp;&nbsp;(*[0]*)assert_raises&nbsp;(OUnitTest.OUnit_failure&nbsp;&quot;not&nbsp;equal&quot;)&nbsp;(fun&nbsp;()&nbsp;-&gt;</div>
+      <div id="fold000030">
+      <div id="line000030" class="lineNone"><a href="javascript:fold('fold000030');"><img border="0" height="10" width="10" src="minus.png" title="fold code"/></a>000030| &nbsp;&nbsp;&nbsp;&nbsp;assert_equal&nbsp;mem'&nbsp;mem'')</div>
+      <div id="line000031" class="lineNone"><img border="0" height="10" width="10"src="dash.png"/>000031| &nbsp;</div>
+      <div id="line000032" class="lineNone"><img border="0" height="10" width="10"src="dash.png"/>000032| let&nbsp;test_lookup_functions&nbsp;()&nbsp;=</div>
+      <div id="line000033" class="lineNone"><img border="0" height="10" width="10"src="dash.png"/>000033| &nbsp;&nbsp;(*&nbsp;Subset&nbsp;of&nbsp;`lspci&nbsp;-mnnv`&nbsp;on&nbsp;my&nbsp;system</div>
+      <div id="line000034" class="lineNone"><img border="0" height="10" width="10"src="dash.png"/>000034| &nbsp;&nbsp;&nbsp;&nbsp;Class:&nbsp;&nbsp;Bridge&nbsp;[0680]</div>
+      <div id="line000035" class="lineNone"><img border="0" height="10" width="10"src="dash.png"/>000035| &nbsp;&nbsp;&nbsp;&nbsp;Vendor:&nbsp;Intel&nbsp;Corporation&nbsp;[8086]</div>
+      <div id="line000036" class="lineNone"><img border="0" height="10" width="10"src="dash.png"/>000036| &nbsp;&nbsp;&nbsp;&nbsp;Device:&nbsp;82371AB/EB/MB&nbsp;PIIX4&nbsp;ACPI&nbsp;[7113]</div>
+      <div id="line000037" class="lineNone"><img border="0" height="10" width="10"src="dash.png"/>000037| &nbsp;&nbsp;&nbsp;&nbsp;SVendor:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Red&nbsp;Hat,&nbsp;Inc&nbsp;[1af4]</div>
+      <div id="line000038" class="lineNone"><img border="0" height="10" width="10"src="dash.png"/>000038| &nbsp;&nbsp;&nbsp;&nbsp;SDevice:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qemu&nbsp;virtual&nbsp;machine&nbsp;[1100]&nbsp;*)</div>
+      <div id="line000039" class="lineAllVisited"><img border="0" height="10" width="10"src="dash.png"/>000039| &nbsp;&nbsp;(*[1]*)let&nbsp;test_lookup&nbsp;=&nbsp;(*[1]*)assert_equal&nbsp;~printer:(fun&nbsp;x&nbsp;-&gt;&nbsp;x)&nbsp;in</div>
+      <div id="line000040" class="lineAllVisited"><img border="0" height="10" width="10"src="dash.png"/>000040| &nbsp;&nbsp;(*[1]*)with_dump&nbsp;(fun&nbsp;acc&nbsp;-&gt;</div>
+      <div id="line000041" class="lineAllVisited"><img border="0" height="10" width="10"src="dash.png"/>000041| &nbsp;&nbsp;&nbsp;&nbsp;(*[1]*)test_lookup&nbsp;&quot;Bridge&quot;&nbsp;@@&nbsp;lookup_class_name&nbsp;acc&nbsp;0x0680;</div>
+      <div id="line000042" class="lineAllVisited"><img border="0" height="10" width="10"src="dash.png"/>000042| &nbsp;&nbsp;&nbsp;&nbsp;(*[1]*)test_lookup&nbsp;&quot;Intel&nbsp;Corporation&quot;&nbsp;@@&nbsp;lookup_vendor_name&nbsp;acc&nbsp;0x8086;</div>
+      <div id="line000043" class="lineAllVisited"><img border="0" height="10" width="10"src="dash.png"/>000043| &nbsp;&nbsp;&nbsp;&nbsp;(*[1]*)test_lookup&nbsp;&quot;82371AB/EB/MB&nbsp;PIIX4&nbsp;ACPI&quot;&nbsp;@@&nbsp;lookup_device_name&nbsp;acc&nbsp;0x8086&nbsp;0x7113;</div>
+      <div id="line000044" class="lineAllVisited"><img border="0" height="10" width="10"src="dash.png"/>000044| &nbsp;&nbsp;&nbsp;&nbsp;(*[1]*)test_lookup&nbsp;&quot;Red&nbsp;Hat,&nbsp;Inc&quot;&nbsp;@@&nbsp;lookup_subsystem_vendor_name&nbsp;acc&nbsp;0x1af4;</div>
+      <div id="line000045" class="lineAllVisited"><img border="0" height="10" width="10"src="dash.png"/>000045| &nbsp;&nbsp;&nbsp;&nbsp;(*[1]*)test_lookup&nbsp;&quot;Qemu&nbsp;virtual&nbsp;machine&quot;&nbsp;@@&nbsp;lookup_subsystem_device_name&nbsp;acc&nbsp;0x8086&nbsp;0x7113&nbsp;0x1af4&nbsp;0x1100;</div>
+      <div id="line000046" class="lineAllVisited"><img border="0" height="10" width="10"src="dash.png"/>000046| &nbsp;&nbsp;&nbsp;&nbsp;(*[1]*)test_lookup&nbsp;&quot;VGA&nbsp;compatible&nbsp;controller&quot;&nbsp;@@&nbsp;lookup_class_name&nbsp;acc&nbsp;0x0300;</div>
+      <div id="line000047" class="lineAllVisited"><img border="0" height="10" width="10"src="dash.png"/>000047| &nbsp;&nbsp;&nbsp;&nbsp;(*[1]*)test_lookup&nbsp;&quot;VGA&nbsp;controller&quot;&nbsp;@@&nbsp;lookup_progif_name&nbsp;acc&nbsp;0x0300&nbsp;0x00;</div>
+      <div id="line000048" class="lineNone"><img border="0" height="10" width="10"src="dash.png"/>000048| &nbsp;&nbsp;)</div>
+      <div id="line000049" class="lineNone"><img border="0" height="10" width="10"src="dash.png"/>000049| &nbsp;</div>
+      <div id="line000050" class="lineNone"><img border="0" height="10" width="10"src="dash.png"/>000050| let&nbsp;_&nbsp;=</div>
+      <div id="line000051" class="lineAllVisited"><img border="0" height="10" width="10"src="dash.png"/>000051| &nbsp;&nbsp;(*[1]*)let&nbsp;suite&nbsp;=&nbsp;(*[1]*)&quot;pci&quot;&nbsp;&gt;:::</div>
+      <div id="line000052" class="lineNone"><img border="0" height="10" width="10"src="dash.png"/>000052| &nbsp;&nbsp;&nbsp;&nbsp;[</div>
+      <div id="line000053" class="lineNone"><img border="0" height="10" width="10"src="dash.png"/>000053| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;smoke_test&quot;&nbsp;&gt;::&nbsp;smoke_test;</div>
+      <div id="line000054" class="lineNone"><img border="0" height="10" width="10"src="dash.png"/>000054| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;test_with_access_cleanup&quot;&nbsp;&gt;::&nbsp;test_with_access_cleanup;</div>
+      <div id="line000055" class="lineNone"><img border="0" height="10" width="10"src="dash.png"/>000055| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;test_lookup_functions&quot;&nbsp;&gt;::&nbsp;test_lookup_functions;</div>
+      <div id="line000056" class="lineNone"><img border="0" height="10" width="10"src="dash.png"/>000056| &nbsp;&nbsp;&nbsp;&nbsp;]</div>
+      <div id="line000057" class="lineNone"><img border="0" height="10" width="10"src="dash.png"/>000057| &nbsp;&nbsp;in</div>
+      <div id="line000058" class="lineAllVisited"><img border="0" height="10" width="10"src="dash.png"/>000058| &nbsp;&nbsp;(*[1]*)OUnit2.run_test_tt_main&nbsp;@@&nbsp;ounit2_of_ounit1&nbsp;suite</div>
+      </div>
+    </code>
+    <br/>
+    <div id="navigator" style="border: solid black 1px; position: fixed; z-index:100; right: 10px; top: 10px; bottom: 10px; width: 16px;">
+      <table width="100%" height="100%" border="0" cellspacing="0">
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="red" style="cursor: pointer;" onclick="javascript:jump('line000008');" title="jump to line 8"></td></tr>
+        <tr><td bgcolor="red" style="cursor: pointer;" onclick="javascript:jump('line000009');" title="jump to line 9"></td></tr>
+        <tr><td bgcolor="red" style="cursor: pointer;" onclick="javascript:jump('line000010');" title="jump to line 10"></td></tr>
+        <tr><td bgcolor="red" style="cursor: pointer;" onclick="javascript:jump('line000011');" title="jump to line 11"></td></tr>
+        <tr><td bgcolor="red" style="cursor: pointer;" onclick="javascript:jump('line000012');" title="jump to line 12"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="red" style="cursor: pointer;" onclick="javascript:jump('line000015');" title="jump to line 15"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="red" style="cursor: pointer;" onclick="javascript:jump('line000019');" title="jump to line 19"></td></tr>
+        <tr><td bgcolor="red" style="cursor: pointer;" onclick="javascript:jump('line000020');" title="jump to line 20"></td></tr>
+        <tr><td bgcolor="red" style="cursor: pointer;" onclick="javascript:jump('line000021');" title="jump to line 21"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="red" style="cursor: pointer;" onclick="javascript:jump('line000023');" title="jump to line 23"></td></tr>
+        <tr><td bgcolor="red" style="cursor: pointer;" onclick="javascript:jump('line000024');" title="jump to line 24"></td></tr>
+        <tr><td bgcolor="red" style="cursor: pointer;" onclick="javascript:jump('line000025');" title="jump to line 25"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="red" style="cursor: pointer;" onclick="javascript:jump('line000027');" title="jump to line 27"></td></tr>
+        <tr><td bgcolor="red" style="cursor: pointer;" onclick="javascript:jump('line000028');" title="jump to line 28"></td></tr>
+        <tr><td bgcolor="red" style="cursor: pointer;" onclick="javascript:jump('line000029');" title="jump to line 29"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+        <tr><td bgcolor="gray"></td></tr>
+      </table>
+    </div>
+    <div class="section">Legend:</div>
+    &nbsp;&nbsp;&nbsp;<span class="lineNone">some code</span>&nbsp;-&nbsp;line containing no point<br/>
+    &nbsp;&nbsp;&nbsp;<span class="lineAllVisited">some code</span>&nbsp;-&nbsp;line containing only visited points<br/>
+    &nbsp;&nbsp;&nbsp;<span class="lineAllUnvisited">some code</span>&nbsp;-&nbsp;line containing only unvisited points<br/>
+    &nbsp;&nbsp;&nbsp;<span class="lineMixed">some code</span>&nbsp;-&nbsp;line containing both visited and unvisited points<br/>
+    <br/>
+    <hr class="codeSep"/>
+    <p class="footer">Generated by <a href="http://bisect.x9c.fr">Bisect 0.1</a> on 2015-05-28 15:27:41</p>
+  </body>
+</html>
