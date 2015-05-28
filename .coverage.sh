@@ -51,7 +51,8 @@ if [ -n "$TRAVIS" ]; then
 
   git -C $GHPDIR config user.email "travis@travis-ci.org"
   git -C $GHPDIR config user.name "Travis"
-  git -C $GHPDIR commit --allow-empty -am "Travis build $TRAVIS_BUILD_NUMBER pushed coverage to gh-pages"
+  git -C $GHPDIR add coverage
+  git -C $GHPDIR commit --allow-empty -m "Travis build $TRAVIS_BUILD_NUMBER pushed coverage to gh-pages"
   git -C $GHPDIR push origin gh-pages > /dev/null
 else
   echo "\$TRAVIS not set; displaying results of bisect-report..."
