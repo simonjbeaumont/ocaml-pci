@@ -3,12 +3,8 @@ var states = new Array();
 
 texts['fold000001'] = '<a href="javascript:fold(\'fold000001\');"><img border="0" height="10" width="10" src="plus.png" title="unfold code"/></a><i>&nbsp;&nbsp;code folded from line 1 to line 9</i>';
 states['fold000001'] = false;
-texts['fold000011'] = '<a href="javascript:fold(\'fold000011\');"><img border="0" height="10" width="10" src="plus.png" title="unfold code"/></a><i>&nbsp;&nbsp;code folded from line 11 to line 14</i>';
+texts['fold000011'] = '<a href="javascript:fold(\'fold000011\');"><img border="0" height="10" width="10" src="plus.png" title="unfold code"/></a><i>&nbsp;&nbsp;code folded from line 11 to line 58</i>';
 states['fold000011'] = false;
-texts['fold000016'] = '<a href="javascript:fold(\'fold000016\');"><img border="0" height="10" width="10" src="plus.png" title="unfold code"/></a><i>&nbsp;&nbsp;code folded from line 16 to line 38</i>';
-states['fold000016'] = false;
-texts['fold000048'] = '<a href="javascript:fold(\'fold000048\');"><img border="0" height="10" width="10" src="plus.png" title="unfold code"/></a><i>&nbsp;&nbsp;code folded from line 48 to line 58</i>';
-states['fold000048'] = false;
 
 function fold(id) {
   tmp = document.getElementById(id).innerHTML;
