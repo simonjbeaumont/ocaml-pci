@@ -66,7 +66,9 @@ let crush_flags f =
   List.fold_left (fun i o -> i lor (f o)) 0
 let id x = x
 
-let maybe f = function Some x -> f x | None -> ()
+let maybe f = function
+  | Some x -> f x
+  | None -> ()
 
 let scan_bus = B.pci_scan_bus
 
