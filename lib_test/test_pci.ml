@@ -1,6 +1,9 @@
 open OUnit
 open Pci
 
+(* Helper functions *)
+(*BISECT-IGNORE-BEGIN*)
+
 let with_dump =
   with_access ~from_dump:(Filename.concat (Sys.getcwd ()) "lib_test/dump.data")
 
@@ -10,6 +13,9 @@ let resident_pages () =
     with exn -> close_in_noerr c; raise exn in
   let statm = with_channel (open_in "/proc/self/statm") input_line in
   Scanf.sscanf statm "%d %d %d %d %d %d %d" (fun _ res _ _ _ _ _ -> res)
+
+(*BISECT-IGNORE-END*)
+(* End helper functions *)
 
 let smoke_test () =
   with_dump (fun a -> let (_: Pci_dev.t list) = get_devices a in ())
