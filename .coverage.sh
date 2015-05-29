@@ -27,8 +27,8 @@ bisect-report bisect*.out -I _build -summary-only -text summary
 (cd _build; bisect-report ../bisect*.out -html ../report-html)
 
 if [ -n "$TRAVIS" ]; then
-  # echo "\$TRAVIS set; running ocveralls and sending to coveralls.io..."
-  # ocveralls --prefix _build bisect* --send
+  echo "\$TRAVIS set; running ocveralls and sending to coveralls.io..."
+  ocveralls --prefix _build bisect*.out --send
   if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
     echo "This is not a pull-request, not pushing report to gh-pages..."
     exit 0
