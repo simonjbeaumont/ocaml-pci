@@ -41,3 +41,6 @@ configure:
 # OASIS_STOP
 gh-pages:
 	bash .docgen.sh
+
+coverage:
+	bash .coverage.sh
