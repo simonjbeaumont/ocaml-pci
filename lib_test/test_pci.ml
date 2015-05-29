@@ -23,11 +23,17 @@ let test_with_access_cleanup () =
   for i = 1 to 1000 do with_dump ~cleanup:true (fun _ -> ()) done;
   let mem' = Gc.compact (); resident_pages () in
   assert_equal ~printer:(Printf.sprintf "VmRSS = %d pages") mem mem';
+  (* Also check we don't leak when raising an exception *)
+  for i = 1 to 1000 do
+    try with_dump ~cleanup:true (fun _ -> failwith "") with Failure _ -> ()
+  done;
+  let mem'' = Gc.compact (); resident_pages () in
+  assert_equal ~printer:(Printf.sprintf "VmRSS = %d pages") mem mem';
   (* Checking for a difference with cleanup=false as a negative test *)
   for i = 1 to 1000 do with_dump ~cleanup:false (fun _ -> ()) done;
-  let mem'' = Gc.compact (); resident_pages () in
+  let mem''' = Gc.compact (); resident_pages () in
   assert_raises (OUnitTest.OUnit_failure "not equal") (fun () ->
-    assert_equal mem' mem'')
+    assert_equal mem'' mem''')
 
 let test_lookup_functions () =
   (* Subset of `lspci -mnnv` on my system
