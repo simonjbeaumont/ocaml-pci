@@ -96,9 +96,6 @@ let maybe f = function Some x -> f x | None -> ()
 
 let scan_bus = B.pci_scan_bus
 
-let fill_info d flag_list =
-  B.pci_fill_info d @@ crush_flags int_of_fill_flag flag_list
-
 let with_string ?(size=1024) f =
   let buf = Bytes.make size '\000' in
   f buf size
