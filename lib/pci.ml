@@ -120,7 +120,7 @@ let with_access ?(cleanup=true) ?from_dump f =
     let result =
       try f pci_access
       with exn ->
-        (try B.pci_cleanup pci_access with _ -> ());
+        B.pci_cleanup pci_access;
         raise exn
     in
     B.pci_cleanup pci_access;
