@@ -4,3 +4,5 @@ setup.log
 *.native
 *.byte
 *.docdir
+.coverage/
+.gh-pages/

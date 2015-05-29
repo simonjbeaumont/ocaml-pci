@@ -62,42 +62,15 @@ module Pci_access = struct
     list_of_linked_list [] (getf !@t B.Pci_access.devices)
 end
 
-type fill_flag =
-  | FILL_IDENT
-  | FILL_IRQ
-  | FILL_BASES
-  | FILL_ROM_BASE
-  | FILL_SIZES
-  | FILL_CLASS
-  | FILL_CAPS
-  | FILL_EXT_CAPS
-  | FILL_PHYS_SLOT
-  | FILL_MODULE_ALIAS
-  | FILL_RESCAN
-
-let int_of_fill_flag = function
-  | FILL_IDENT -> T.Fill_flag.fill_ident
-  | FILL_IRQ -> T.Fill_flag.fill_irq
-  | FILL_BASES -> T.Fill_flag.fill_bases
-  | FILL_ROM_BASE -> T.Fill_flag.fill_rom_base
-  | FILL_SIZES -> T.Fill_flag.fill_sizes
-  | FILL_CLASS -> T.Fill_flag.fill_class
-  | FILL_CAPS -> T.Fill_flag.fill_caps
-  | FILL_EXT_CAPS -> T.Fill_flag.fill_ext_caps
-  | FILL_PHYS_SLOT -> T.Fill_flag.fill_phys_slot
-  | FILL_MODULE_ALIAS -> T.Fill_flag.fill_module_alias
-  | FILL_RESCAN -> T.Fill_flag.fill_rescan
-
 let crush_flags f =
   List.fold_left (fun i o -> i lor (f o)) 0
 let id x = x
 
-let maybe f = function Some x -> f x | None -> ()
+let maybe f = function
+  | Some x -> f x
+  | None -> ()
 
 let scan_bus = B.pci_scan_bus
-
-let fill_info d flag_list =
-  B.pci_fill_info d @@ crush_flags int_of_fill_flag flag_list
 
 let with_string ?(size=1024) f =
   let buf = Bytes.make size '\000' in
@@ -147,7 +120,7 @@ let with_access ?(cleanup=true) ?from_dump f =
     let result =
       try f pci_access
       with exn ->
-        (try B.pci_cleanup pci_access with _ -> ());
+        B.pci_cleanup pci_access;
         raise exn
     in
     B.pci_cleanup pci_access;
@@ -157,8 +130,8 @@ let get_devices pci_access =
   B.pci_scan_bus pci_access;
   let devs = Pci_access.devices pci_access in
   (* Be sure to fill all the fields that can be accessed from a Pci_dev.t *)
-  let all_fill_flags = [
-    FILL_IDENT; FILL_IRQ; FILL_BASES; FILL_ROM_BASE; FILL_SIZES; FILL_CLASS;
-    FILL_CAPS; FILL_EXT_CAPS; FILL_PHYS_SLOT; FILL_MODULE_ALIAS ] in
-  let flags = crush_flags int_of_fill_flag all_fill_flags in
+  let fill_flags = T.Fill_flag.([
+    fill_ident; fill_irq; fill_bases; fill_rom_base; fill_sizes; fill_class;
+    fill_caps; fill_ext_caps; fill_phys_slot; fill_module_alias; ]) in
+  let flags = crush_flags id fill_flags in
   List.map (fun d -> let (_: int) = B.pci_fill_info d flags in Pci_dev.make d) devs

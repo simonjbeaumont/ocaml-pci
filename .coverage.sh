@@ -6,7 +6,7 @@ COVERAGE_DIR=.coverage
 rm -rf $COVERAGE_DIR
 mkdir -p $COVERAGE_DIR
 pushd $COVERAGE_DIR
-trap "popd; rm -rf $COVERAGE_DIR" EXIT
+if [ -z "$KEEP" ]; then trap "popd; rm -rf $COVERAGE_DIR" EXIT; fi
 
 $(which cp) -r ../* .
 

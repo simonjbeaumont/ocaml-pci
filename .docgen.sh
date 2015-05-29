@@ -13,7 +13,7 @@ else
 fi
 
 DOCDIR=.gh-pages
-trap "rm -rf $DOCDIR" EXIT
+if [ -n "$KEEP" ]; then trap "rm -rf $DOCDIR" EXIT; fi
 rm -rf $DOCDIR
 
 git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/simonjbeaumont/ocaml-pci $DOCDIR > /dev/null
