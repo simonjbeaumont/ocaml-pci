@@ -1,5 +1,7 @@
 #!/bin/sh
-set -ex
+set -e
+# Make sure we're not echoing any sensitive data
+set +x
 
 eval `opam config env`
 ./configure --enable-docs

@@ -4,7 +4,7 @@ install: wget https://raw.githubusercontent.com/ocaml/ocaml-travisci-skeleton/ma
 script: bash -ex .travis-opam.sh && make gh-pages && bash -ex .coverage.sh
 env:
   global:
-  - secure: DuX/3W2aioIF8vDaBV2106iZup3wrixGzJhqtj294afvzfLUlyGC0ma9MBoaOdGK9dMe0NWcjPzGw8i9bB+JwdnOBOW09gyjKh+T8Vb7mUQneNOiINc2zFPHnhOZzgTPvbSDGbp54KUkpSQTGc+t4U/eSAogL35lf9DK9VQ9u/Y=
+  - secure: jgNNAbrODFH0dyZLrXD/zSI/U4luCwalj/Lqoz3IRMXwscshmIQDcp0KCghh6s65qCuMDlVjVwM8Kn+wftY40HRuuf+XA6hMpH8Jmbr4Qi3l5EnotLS4AH/GWhu/nP3F3MbaML+kUgg0GeH19qZ4npteefhDcONxw6xtvIR/6rg=
   matrix:
   - OCAML_VERSION=latest
 branches:

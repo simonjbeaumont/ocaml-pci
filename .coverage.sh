@@ -1,6 +1,7 @@
 #!/bin/sh
-
-set -ex
+set -e
+# Make sure we're not echoing any sensitive data
+set +x
 
 COVERAGE_DIR=.coverage
 rm -rf $COVERAGE_DIR
