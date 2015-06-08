@@ -15,6 +15,11 @@ eval `opam config env`
 opam install -y bisect_ppx oasis ocveralls
 
 sed -i '/BuildDepends:/ s/$/, bisect_ppx/' _oasis
+if [ -f ../.coverage.excludes ]; then
+  ln -s ../.coverage.excludes
+  sed -i '/ByteOpt:/ s/$/ -ppxopt bisect_ppx,"-exclude-file ..\/.coverage.excludes"/' _oasis
+  sed -i '/NativeOpt:/ s/$/ -ppxopt bisect_ppx,"-exclude-file ..\/.coverage.excludes"/' _oasis
+fi
 oasis setup
 
 ./configure --enable-tests
