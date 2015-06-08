@@ -1,7 +1,7 @@
 (** A wrapper library around bindings to [libpci].
 
     [Pci] exposes a subset of the functionality of [libpci] as part of
-    "{{:http://mj.ucw.cz/sw/pciutils/} The PCI Utilities}" package shipped with
+    "{{:http://mj.ucw.cz/sw/pciutils/}The PCI Utilities}" package shipped with
     most operating systems.
 
     Rather than being a completely transparent set of bindings, this library
