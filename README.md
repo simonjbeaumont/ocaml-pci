@@ -3,6 +3,7 @@ ocaml-pci
 
 [![Build Status](https://travis-ci.org/simonjbeaumont/ocaml-pci.svg?branch=master)](https://travis-ci.org/simonjbeaumont/ocaml-pci)
 [![Coverage Status](https://coveralls.io/repos/simonjbeaumont/ocaml-pci/badge.svg?branch=master)](https://coveralls.io/r/simonjbeaumont/ocaml-pci?branch=master)
+[![API reference](https://img.shields.io/badge/docs-API_reference-blue.svg)](http://simonjbeaumont.github.io/ocaml-pci)
 
 An OCaml library exposing an API over bindings to `libpci`.
 
