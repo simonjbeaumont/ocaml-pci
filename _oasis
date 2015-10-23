@@ -61,7 +61,7 @@ Executable test_pci
   BuildDepends:   pci, oUnit
 
 Test test_pci
-  Command: $test_pci
+  Command: $test_pci -runner sequential
 
 Flag examples
   Description: Compile example executables
