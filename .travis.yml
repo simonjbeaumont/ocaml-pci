@@ -1,14 +1,14 @@
 language: c
 sudo: required
 dist: trusty
+branches:
+  only: master
 install:
   - wget https://raw.githubusercontent.com/ocaml/ocaml-travisci-skeleton/master/.travis-opam.sh
   - wget https://raw.githubusercontent.com/simonjbeaumont/ocaml-travisci-skeleton/docgen/.travis-docgen.sh
 script: bash -ex .travis-opam.sh && bash -ex .travis-docgen.sh && bash -ex .coverage.sh
 env:
   global:
+  - OCAML_VERSION=4.02 TESTS=true
+  - COV_CONF="./configure --enable-tests" COV_BUILD="make" COV_TEST="make test"
   - secure: jgNNAbrODFH0dyZLrXD/zSI/U4luCwalj/Lqoz3IRMXwscshmIQDcp0KCghh6s65qCuMDlVjVwM8Kn+wftY40HRuuf+XA6hMpH8Jmbr4Qi3l5EnotLS4AH/GWhu/nP3F3MbaML+kUgg0GeH19qZ4npteefhDcONxw6xtvIR/6rg=
-  matrix:
-  - OCAML_VERSION=latest
-branches:
-  only: master
