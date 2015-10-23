@@ -12,7 +12,6 @@ if [ -z "$KEEP" ]; then trap "popd; rm -rf $COVERAGE_DIR" EXIT; fi
 $(which cp) -r ../* .
 
 eval `opam config env`
-opam pin add -n bisect_ppx git://github.com/rleonid/bisect_ppx#0.2.2
 opam install -y bisect_ppx oasis ocveralls
 
 sed -i '/BuildDepends:/ s/$/, bisect_ppx/' _oasis
