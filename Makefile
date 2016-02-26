@@ -42,5 +42,8 @@ configure:
 gh-pages:
 	bash .docgen.sh
 
-coverage:
-	bash .coverage.sh
+travis-coveralls.sh:
+	wget https://raw.githubusercontent.com/simonjbeaumont/ocaml-travis-coveralls/master/$@
+
+coverage: travis-coveralls.sh
+	bash $<
