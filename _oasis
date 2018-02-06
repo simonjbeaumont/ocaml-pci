@@ -1,6 +1,6 @@
 OASISFormat:    0.4
 Name:           pci
-Version:        1.0.0
+Version:        1.0.1
 Synopsis:       Ctypes bindings to libpci for OCaml
 Authors:        Si Beaumont
 License:        LGPL-2.1 with OCaml linking exception
