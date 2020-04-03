@@ -15,9 +15,6 @@ doc:
 clean:
 	dune clean
 
-gh-pages:
-	bash .docgen.sh
-
 travis-coveralls.sh:
 	wget https://raw.githubusercontent.com/simonjbeaumont/ocaml-travis-coveralls/master/$@
 
