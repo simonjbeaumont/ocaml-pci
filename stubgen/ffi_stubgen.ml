@@ -10,7 +10,7 @@ let _ =
   | true, true ->
     failwith "Exactly one of -ml and -c must be specified"
   | true, false ->
-    Cstubs.write_ml Format.std_formatter ~prefix (module Ffi_bindings.Bindings)
+    Cstubs.write_ml Format.std_formatter ~prefix (module Pci_bindings.Ffi_bindings.Bindings)
   | false, true ->
     print_endline "#include <pci/pci.h>";
-    Cstubs.write_c Format.std_formatter ~prefix (module Ffi_bindings.Bindings)
+    Cstubs.write_c Format.std_formatter ~prefix (module Pci_bindings.Ffi_bindings.Bindings)

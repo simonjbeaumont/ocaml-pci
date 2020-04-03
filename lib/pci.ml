@@ -1,7 +1,7 @@
 open Ctypes
 
-module B = Ffi_bindings.Bindings(Ffi_generated)
-module T = Ffi_bindings.Types(Ffi_generated_types)
+module B = Pci_bindings.Ffi_bindings.Bindings(Ffi_generated)
+module T = Pci_bindings.Ffi_bindings.Types(Ffi_generated_types)
 
 module U8 = Unsigned.UInt8
 module U16 = Unsigned.UInt16
