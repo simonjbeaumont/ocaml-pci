@@ -5,7 +5,7 @@ open Pci
 (*BISECT-IGNORE-BEGIN*)
 
 let with_dump =
-  with_access ~from_dump:(Filename.concat (Sys.getcwd ()) "lib_test/dump.data")
+  with_access ~from_dump:(Filename.concat (Sys.getcwd ()) "dump.data")
 
 let resident_pages () =
   let with_channel c f =
