@@ -86,7 +86,7 @@ let with_string ?(size=1024) f =
   let s = CArray.start buf in
   let r = f s size in
   (* Keep `s` alive through the C binding invocation in `f` *)
-  ignore (List.hd [s] |> Obj.repr |> Obj.tag);
+  ignore (Sys.opaque_identity (List.hd [s]));
   r
 
 let lookup_class_name pci_access class_id =

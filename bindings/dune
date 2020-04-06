@@ -1,6 +1,5 @@
 (library
   (name pci_bindings)
   (public_name pci.bindings)
-  (flags (:standard -safe-string))
   (libraries ctypes.stubs ctypes ctypes.foreign.threaded)
 )

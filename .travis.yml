@@ -6,7 +6,6 @@ install:
 script: bash -ex .travis-opam.sh
 jobs:
   include:
-    - env: OCAML_VERSION=4.02
     - env: OCAML_VERSION=4.08
     - env: OCAML_VERSION=4.10
 env:

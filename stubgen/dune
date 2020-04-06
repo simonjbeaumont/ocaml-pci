@@ -1,6 +1,5 @@
 (executables
   (names ffi_stubgen ffi_types_stubgen)
-  (flags (:standard -safe-string))
   (libraries
     pci_bindings
     ctypes.stubs
