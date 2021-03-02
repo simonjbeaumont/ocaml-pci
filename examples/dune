@@ -1,4 +1,3 @@
 (executable
-  (name lspci)
-  (libraries pci)
-)
+ (name lspci)
+ (libraries pci))
