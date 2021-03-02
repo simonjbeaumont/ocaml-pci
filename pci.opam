@@ -30,6 +30,5 @@ depexts: [
   ["hwdata" "pciutils-dev"] {os-distribution = "alpine"}
   ["hwdata" "pciutils-devel"] {os-distribution = "centos"}
   ["hwdata" "pciutil-devel"] {os-distribution = "fedora"}
-
 ]
-dev-repo: "git+https://github.com/simonjbeaumont/ocaml-pci.git"
+dev-repo: "git+https://github.com/xapi-project/ocaml-pci.git"

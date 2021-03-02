@@ -15,8 +15,5 @@ doc:
 clean:
 	dune clean
 
-travis-coveralls.sh:
-	wget https://raw.githubusercontent.com/simonjbeaumont/ocaml-travis-coveralls/master/$@
-
-coverage: travis-coveralls.sh
-	bash $<
+format:
+	dune build @fmt --auto-promote
