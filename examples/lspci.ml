@@ -43,7 +43,7 @@ let lspci_nnnDv pci_access =
   ( match devs with
   | [] ->
       ()
-  | d :: ds ->
+  | d :: _ ->
       let open Pci_dev in
       Printf.printf "Getting region sizes for device %04x:%02x:%02x.%d\n"
         d.domain d.bus d.dev d.func ;

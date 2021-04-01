@@ -74,8 +74,6 @@ let id x = x
 
 let maybe f = function Some x -> f x | None -> ()
 
-let scan_bus = B.pci_scan_bus
-
 let with_string ?(size = 1024) f =
   (* Using an ocaml string violates this rule from the ctypes FAQ:
    * string is unsuitable for binding to C functions that write

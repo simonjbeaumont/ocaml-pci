@@ -25,6 +25,7 @@
 (library
  (name pci)
  (public_name pci)
+ (flags (:standard -w -27-9))
  (foreign_stubs
   (language c)
   (names ffi_generated_stubs)
