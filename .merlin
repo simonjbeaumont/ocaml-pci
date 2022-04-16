@@ -1,7 +1,7 @@
 PRJ pci
 PKG ctypes
 PKG ctypes.stubs
-PKG oUnit
+PKG ounit2
 
 S lib
 S lib_test

@@ -58,7 +58,7 @@ Executable test_pci
   CompiledObject: best
   ByteOpt:        -warn-error +1..45
   NativeOpt:      -warn-error +1..45
-  BuildDepends:   pci, oUnit
+  BuildDepends:   pci, ounit2
 
 Test test_pci
   Command: $test_pci -runner sequential

@@ -21,7 +21,7 @@ remove: [
 depends: [
   "ctypes" {>= "0.4"}
   "ocamlfind" {build}
-  "ounit" {test}
+  "ounit2" {test}
 ]
 available: [ocaml-version >= "4.01.0" & os = "linux"]
 depexts: [
