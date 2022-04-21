@@ -63,11 +63,11 @@ true: annot, bin_annot
 <lib_test/test_pci.{native,byte}>: oasis_executable_test_pci_native
 <lib_test/*.ml{,i,y}>: oasis_executable_test_pci_native
 <lib_test/test_pci.{native,byte}>: pkg_ctypes.stubs
-<lib_test/test_pci.{native,byte}>: pkg_oUnit
+<lib_test/test_pci.{native,byte}>: pkg_ounit2
 <lib_test/test_pci.{native,byte}>: use_pci
 <lib_test/test_pci.{native,byte}>: use_pci_bindings
 <lib_test/*.ml{,i,y}>: pkg_ctypes.stubs
-<lib_test/*.ml{,i,y}>: pkg_oUnit
+<lib_test/*.ml{,i,y}>: pkg_ounit2
 <lib_test/*.ml{,i,y}>: use_pci
 <lib_test/*.ml{,i,y}>: use_pci_bindings
 # Executable lspci

@@ -7681,7 +7681,7 @@ let setup_t =
                       bs_build_depends =
                         [
                            InternalLibrary "pci";
-                           FindlibPackage ("oUnit", None)
+                           FindlibPackage ("ounit2", None)
                         ];
                       bs_build_tools = [ExternalTool "ocamlbuild"];
                       bs_interface_patterns =
