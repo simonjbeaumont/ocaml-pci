@@ -25,7 +25,6 @@ The easiest way to install this library is to use `opam`:
 However, if you don't use `opam`, you can compile from source by cloning this
 repo and executing the usual dance:
 
-    ./configure
     make
     make install
 

@@ -1,15 +1,25 @@
 language: c
-sudo: required
-dist: trusty
-branches:
-  only: master
+os: linux
+dist: xenial
 install:
-  - wget https://raw.githubusercontent.com/ocaml/ocaml-travisci-skeleton/master/.travis-opam.sh
-  - wget https://raw.githubusercontent.com/simonjbeaumont/ocaml-travisci-skeleton/docgen/.travis-docgen.sh
-  - wget https://raw.githubusercontent.com/simonjbeaumont/ocaml-travis-coveralls/master/travis-coveralls.sh
-script: bash -ex .travis-opam.sh && bash -ex .travis-docgen.sh && bash -ex travis-coveralls.sh
+  - wget https://raw.githubusercontent.com/ocaml/ocaml-ci-scripts/master/.travis-opam.sh
+script: bash -ex .travis-opam.sh
+jobs:
+  include:
+    - env: OCAML_VERSION=4.08
+    - env: OCAML_VERSION=4.10
 env:
   global:
-  - OCAML_VERSION=4.02 TESTS=true
-  - COV_CONF="./configure --enable-tests"
   - secure: jgNNAbrODFH0dyZLrXD/zSI/U4luCwalj/Lqoz3IRMXwscshmIQDcp0KCghh6s65qCuMDlVjVwM8Kn+wftY40HRuuf+XA6hMpH8Jmbr4Qi3l5EnotLS4AH/GWhu/nP3F3MbaML+kUgg0GeH19qZ4npteefhDcONxw6xtvIR/6rg=
+  - PACKAGE="pci"
+
+deploy:
+  provider: pages:git
+  local_dir: $TRAVIS_BUILD_DIR/_build/default/_doc/_html
+  token: $GITHUB_TOKEN
+  keep_history: true
+  target_branch: gh_pages
+  on:
+    branch: master
+    condition: $OCAML_VERSION = 4.10
+  edge: true

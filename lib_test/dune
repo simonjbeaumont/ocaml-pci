@@ -1,0 +1,5 @@
+(test
+ (name test_pci)
+ (deps dump.data)
+ (flags (:standard -w -35))
+ (libraries pci ounit2))

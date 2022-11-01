@@ -1,0 +1,3 @@
+(executable
+ (name lspci)
+ (libraries pci))
