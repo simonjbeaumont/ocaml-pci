@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: 3aef5379f9809afb4070c8c40199f17a)
+# DO NOT EDIT (digest: 3b8cfe1d5414290805fdad2fafc653dc)
 # Ignore VCS directories, you can use the same kind of rule outside
 # OASIS_START/STOP if you want to exclude directories that contains
 # useless stuff for the build process
@@ -20,6 +20,7 @@ true: annot, bin_annot
 <bindings/*.ml{,i,y}>: oasis_library_pci_bindings_byte
 <bindings/pci_bindings.{cma,cmxa}>: oasis_library_pci_bindings_native
 <bindings/*.ml{,i,y}>: oasis_library_pci_bindings_native
+<bindings/*.ml{,i,y}>: pkg_ctypes
 <bindings/*.ml{,i,y}>: pkg_ctypes.stubs
 # Library pci
 "lib/pci.cmxs": use_pci
@@ -37,8 +38,10 @@ true: annot, bin_annot
 <lib/*.ml{,i,y}>: oasis_library_pci_native
 "lib/ffi_generated_stubs.c": oasis_library_pci_native
 <lib/pci.{cma,cmxa}>: use_libpci_stubs
+<lib/*.ml{,i,y}>: pkg_ctypes
 <lib/*.ml{,i,y}>: pkg_ctypes.stubs
 <lib/*.ml{,i,y}>: use_pci_bindings
+"lib/ffi_generated_stubs.c": pkg_ctypes
 "lib/ffi_generated_stubs.c": pkg_ctypes.stubs
 "lib/ffi_generated_stubs.c": use_pci_bindings
 # Executable ffi_stubgen
@@ -46,6 +49,7 @@ true: annot, bin_annot
 <stubgen/*.ml{,i,y}>: oasis_executable_ffi_stubgen_byte
 "stubgen/ffi_stubgen.byte": oasis_executable_ffi_stubgen_native
 <stubgen/*.ml{,i,y}>: oasis_executable_ffi_stubgen_native
+"stubgen/ffi_stubgen.byte": pkg_ctypes
 "stubgen/ffi_stubgen.byte": pkg_ctypes.stubs
 "stubgen/ffi_stubgen.byte": use_pci_bindings
 # Executable ffi_types_stubgen
@@ -53,8 +57,10 @@ true: annot, bin_annot
 <stubgen/*.ml{,i,y}>: oasis_executable_ffi_types_stubgen_byte
 "stubgen/ffi_types_stubgen.byte": oasis_executable_ffi_types_stubgen_native
 <stubgen/*.ml{,i,y}>: oasis_executable_ffi_types_stubgen_native
+"stubgen/ffi_types_stubgen.byte": pkg_ctypes
 "stubgen/ffi_types_stubgen.byte": pkg_ctypes.stubs
 "stubgen/ffi_types_stubgen.byte": use_pci_bindings
+<stubgen/*.ml{,i,y}>: pkg_ctypes
 <stubgen/*.ml{,i,y}>: pkg_ctypes.stubs
 <stubgen/*.ml{,i,y}>: use_pci_bindings
 # Executable test_pci
@@ -62,10 +68,12 @@ true: annot, bin_annot
 <lib_test/*.ml{,i,y}>: oasis_executable_test_pci_byte
 <lib_test/test_pci.{native,byte}>: oasis_executable_test_pci_native
 <lib_test/*.ml{,i,y}>: oasis_executable_test_pci_native
+<lib_test/test_pci.{native,byte}>: pkg_ctypes
 <lib_test/test_pci.{native,byte}>: pkg_ctypes.stubs
 <lib_test/test_pci.{native,byte}>: pkg_ounit2
 <lib_test/test_pci.{native,byte}>: use_pci
 <lib_test/test_pci.{native,byte}>: use_pci_bindings
+<lib_test/*.ml{,i,y}>: pkg_ctypes
 <lib_test/*.ml{,i,y}>: pkg_ctypes.stubs
 <lib_test/*.ml{,i,y}>: pkg_ounit2
 <lib_test/*.ml{,i,y}>: use_pci
@@ -75,9 +83,11 @@ true: annot, bin_annot
 <examples/*.ml{,i,y}>: oasis_executable_lspci_byte
 <examples/lspci.{native,byte}>: oasis_executable_lspci_native
 <examples/*.ml{,i,y}>: oasis_executable_lspci_native
+<examples/lspci.{native,byte}>: pkg_ctypes
 <examples/lspci.{native,byte}>: pkg_ctypes.stubs
 <examples/lspci.{native,byte}>: use_pci
 <examples/lspci.{native,byte}>: use_pci_bindings
+<examples/*.ml{,i,y}>: pkg_ctypes
 <examples/*.ml{,i,y}>: pkg_ctypes.stubs
 <examples/*.ml{,i,y}>: use_pci
 <examples/*.ml{,i,y}>: use_pci_bindings

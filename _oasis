@@ -25,7 +25,7 @@ Library pci_bindings
   Modules:          Ffi_bindings
   ByteOpt:          -warn-error +1..45
   NativeOpt:        -warn-error +1..45
-  BuildDepends:     ctypes.stubs
+  BuildDepends:     ctypes,ctypes.stubs
 
 Document pci
   Type:                 ocamlbuild (0.4)

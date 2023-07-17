@@ -1,8 +1,8 @@
 # OASIS_START
-# DO NOT EDIT (digest: 410dcb9a574f3161b3e7f1627031206a)
+# DO NOT EDIT (digest: b7d5d5a8b3a8c39bf5f08dd6ebd74373)
 version = "1.0.1"
 description = "Ctypes bindings to libpci for OCaml"
-requires = "ctypes.stubs"
+requires = "ctypes ctypes.stubs"
 archive(byte) = "pci_bindings.cma"
 archive(byte, plugin) = "pci_bindings.cma"
 archive(native) = "pci_bindings.cmxa"
